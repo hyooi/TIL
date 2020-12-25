@@ -30,5 +30,5 @@ public class Team {
 	// member가 주인이라는 뜻. 외래키가 있는 곳을 주인으로 정할 것!
 	// 복잡하므로 양방향보단 단방향을 먼저 사용하되, 필요할 때만 양방향 사용 권장
 	@OneToMany(mappedBy = "team")
-	private List<Member> members = new ArrayList<>();
+	private List<Member> members = new ArrayList<Member>();
 }
