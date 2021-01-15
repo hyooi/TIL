@@ -2,7 +2,7 @@ package easy;
 
 public class SingletonPattern {
 
-  private static SingletonPattern SINGLETON = new SingletonPattern();
+  private static final SingletonPattern SINGLETON = new SingletonPattern();
   private SingletonPattern() {}
 
   public String str;
