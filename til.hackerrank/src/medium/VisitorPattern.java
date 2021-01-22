@@ -1,10 +1,12 @@
 package medium;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public class VisitorPattern {
 
@@ -24,32 +26,40 @@ public class VisitorPattern {
       nodeList.add(edge[0]);
     }
 
-    TreeNode treeNode = new TreeNode(values[0], getColor(colors[0]), 0);
-    int tempDepth = -1;
-    int tempVal = Integer.MIN_VALUE;
+    TreeNode rootNode = new TreeNode(values[0], getColor(colors[0]), 0);
+    TreeNode topNode = rootNode;
+    int currentDepth = 0;
+    int currentValue = Integer.MIN_VALUE;
 
+    Map<Integer, TreeNode> nodeMap = new HashMap<>();
     for (int i = 0; i < n - 1; i++) {
       int[] edge = parseIntArr(tempLines[i]);
 
-      if (tempVal != edge[0]) {
-        tempVal = edge[0];
-        tempDepth++;
+      if (edge[0] != 1 && currentValue != edge[0]) {
+        if (nodeMap.get(edge[0]) != null) {
+          topNode = nodeMap.get(edge[0]);
+        } else {
+          continue;
+        }
+
+        currentDepth++;
       }
 
       if (nodeList.contains(edge[1])) {
-        TreeNode tempNode = new TreeNode(values[edge[0] - 1], getColor(colors[edge[0] - 1]),
-            tempDepth);
-        treeNode.addChild(tempNode);
-
-        Tree tree = new TreeLeaf(values[edge[1] - 1], getColor(colors[edge[1] - 1]), tempDepth + 1);
-        tempNode.addChild(tree);
+        TreeNode node = new TreeNode(values[edge[1] - 1], getColor(colors[edge[1] - 1]),
+            currentDepth + 1);
+        topNode.addChild(node);
+        nodeMap.put(edge[1], node);
       } else {
-        Tree tree = new TreeLeaf(values[edge[1] - 1], getColor(colors[edge[1] - 1]), tempDepth + 1);
-        treeNode.addChild(tree);
+        TreeLeaf tree = new TreeLeaf(values[edge[1] - 1], getColor(colors[edge[1] - 1]),
+            currentDepth + 1);
+        topNode.addChild(tree);
       }
+
+      currentValue = edge[0];
     }
 
-    return treeNode;
+    return rootNode;
   }
 
   private static Color getColor(int value) {
@@ -57,9 +67,13 @@ public class VisitorPattern {
   }
 
   private static int[] parseIntArr(String line) {
-    return Stream.of(line.split(" "))
-        .mapToInt(Integer::parseInt)
-        .toArray();
+    String[] lines = line.split(" ");
+    int[] result = new int[lines.length];
+    for (int i = 0; i < lines.length; i++) {
+      result[i] = Integer.parseInt(lines[i]);
+    }
+
+    return result;
   }
 
 
@@ -158,48 +172,66 @@ abstract class TreeVis {
 
 class SumInLeavesVisitor extends TreeVis {
 
+  int sum = 0;
+
   public int getResult() {
-    //트리 잎들의 values들을 더해서 리턴
-    return 0;
+    return sum;
   }
 
   public void visitNode(TreeNode node) {
-    //implement this
   }
 
   public void visitLeaf(TreeLeaf leaf) {
-    //implement this
+    sum += leaf.getValue();
   }
 }
 
 class ProductOfRedNodesVisitor extends TreeVis {
 
+  List<Integer> list = new ArrayList<>();
+
   public int getResult() {
-    //빨강 노드들에 저장된 값을 리턴.
-    return 1;
+    int product = list.get(0);
+    for (int i = 0; i < list.size(); i++) {
+      if (i != 0) {
+        product = product * list.get(i);
+      }
+    }
+
+    return product;
   }
 
   public void visitNode(TreeNode node) {
-    //implement this
+    if (node.getColor() == Color.RED) {
+      list.add(node.getValue());
+    }
   }
 
   public void visitLeaf(TreeLeaf leaf) {
-    //implement this
+    if (leaf.getColor() == Color.RED) {
+      list.add(leaf.getValue());
+    }
   }
 }
 
 class FancyVisitor extends TreeVis {
 
+  int sumOfNonLeafEvenDepth = 0;
+  int sumOfGreenLeaf = 0;
+
   public int getResult() {
-    //트리의 잎이 아닌 노드들값들의 합계간의 차이 리턴
-    return 0;
+    return Math.abs(sumOfNonLeafEvenDepth - sumOfGreenLeaf);
   }
 
   public void visitNode(TreeNode node) {
-    //implement this
+    if (node.getDepth() % 2 == 0) {
+      sumOfNonLeafEvenDepth += node.getValue();
+    }
   }
 
   public void visitLeaf(TreeLeaf leaf) {
-    //implement this
+    if (leaf.getColor() == Color.GREEN) {
+      sumOfGreenLeaf += leaf.getValue();
+    }
   }
 }
