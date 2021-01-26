@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
 <body>
-  hi
+  <div id="welcome"></div>
+
+  <!-- redirect uri는 반드시 아스키코드로 인코딩된 값이어야만 함 -->
+  <!-- state : resource server는 요청들어온 state값을 동일하게 돌려줌. 이 access token이 내가 요청한 토큰이 맞는지를 확인할 때 사용 -->
+  <a href="https://www.facebook.com/v9.0/dialog/oauth?client_id=441285910564484&redirect_uri=https%3A%2F%2Flocalhost%3A8000%2Ffb-low.html&state=1234&response_type=token">Login with facebook</a>
+
+  <script>
+    const atr = location.href.match('access_token=([^&]*)');
+    if(atr) {
+      const access_token = atr[1];
+      fetch("https://graph.facebook.com/v9.0/me?fields=name%2Cgender&access_token="+access_token)
+      .then(function (raw) {
+        return raw.json();
+      })
+      .then(function (result) {
+        document.querySelector('#welcome').innerHTML = 'Welcome! ' + result.name;
+      });
+    }
+  </script>
 </body>
 </html>
