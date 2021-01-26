@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <div id="welcome"></div>
+  <input type="button" value="checking...." id="authBtn" onclick="
+   if(this.value === 'Login') {
+     FB.login(function(response){
+      location.reload();
+     }, {scope: 'email'});
+   } else {
+     FB.logout(function(response) {
+       location.reload();
+     });
+   }
+  "/>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : '441285910564484',
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v9.0'
+      });
+
+      FB.getLoginStatus(function(response) {
+        if(response.status === 'connected') {
+          document.querySelector('#authBtn').value = "Logout";
+
+          FB.api(
+              '/me',
+              'GET',
+              {"fields":"id,name,email"},
+              function(response) {
+                document.querySelector('#welcome').innerHTML = "Welcome, "+response.name +
+                    "(" + response.email + ")";
+              }
+          );
+        } else {
+          document.querySelector('#authBtn').value = "Login";
+        }
+      });
+    };
+
+  </script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+</body>
+</html>

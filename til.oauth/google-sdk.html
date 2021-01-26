@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="944044798524-9psi1rdtnmkk8vfi7m0iqsgo7ip3297s.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <div id="welcome" style="display:none"></div>
+  <a id="signout" href="#" onclick="signOut();" style="display: none">Sign out</a>
+
+  <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      document.querySelector('#welcome').innerHTML = "Welcome, "+profile.getName() +
+          "(" + profile.getEmail() + ")";
+      document.querySelector('#welcome').style.display = 'inline';
+      document.getElementsByClassName('g-signin2')[0].style.display = 'none';
+      document.querySelector('#signout').style.display = 'inline';
+    }
+
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        document.querySelector('#welcome').style.display = 'none';
+        document.getElementsByClassName('g-signin2')[0].style.display = 'inline';
+        document.querySelector('#signout').style.display = 'none';
+      });
+    }
+  </script>
+</body>
+</html>
