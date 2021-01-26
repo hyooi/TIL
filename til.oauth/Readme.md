@@ -14,6 +14,7 @@ npm install -g local-web-server
 ```
 ws
 ```
+- `ws --https`를 통해 https웹서버 기동이 가능
 - 페이스북 바닐라 자바스크립트 활용 예제: https://localhost:8000/fb-low.html
 - 페이스북SDK 활용 예제: https://localhost:8000/fb-sdk.html
 - 구글SDK 활용 예제: https://localhost:8000/google-sdk.html
