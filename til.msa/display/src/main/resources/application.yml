@@ -17,6 +17,13 @@ hystrix:
         errorThresholdPercentage: 50
 product:
   ribbon:
-    listOfServers: localhost:8082, localhost:7777
+    #    listOfServers: localhost:8082, localhost:7777 #eureka를 통해 서버리스트를 가져오게 됨
     MaxAutoRetries: 0
     MaxAutoRetriesNextServer: 1
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka #default address
