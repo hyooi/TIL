@@ -2,4 +2,4 @@ rootProject.name = 'til.msa'
 include 'product'
 include 'display'
 include 'eureka-server'
-
+include 'zuul'
