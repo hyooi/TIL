@@ -7,3 +7,4 @@ Commits about **Today I learned**
 - JPA
 - Oauth
 - MSA
+- Kafka
