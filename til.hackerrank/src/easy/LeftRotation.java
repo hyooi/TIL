@@ -9,7 +9,7 @@ public class LeftRotation {
   static int[] rotLeft(int[] a, int d) {
     int[] resultArr = new int[a.length];
     for (int i = 0; i < a.length; i++) {
-      int num = i + d;
+      int num = a.length - (d - i);
       num = (num >= a.length) ? num - a.length : num;
       resultArr[num] = a[i];
     }
