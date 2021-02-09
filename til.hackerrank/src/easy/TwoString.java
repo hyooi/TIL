@@ -3,44 +3,19 @@ package easy;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class TwoString {
 
   // Complete the twoStrings function below.
   static String twoStrings(String s1, String s2) {
-    String result = "NO";
-
-    char[] ch1 = s1.toCharArray();
-    char[] ch2 = s2.toCharArray();
-    Arrays.sort(ch1);
-    Arrays.sort(ch2);
-
-    int i = 0;
-    int j = 0;
-    while (true) {
-      if (ch1.length == i || ch2.length == j) {
-        break;
-      }
-
-      if (ch1[i] == ch2[j]) {
-        result = "YES";
-        break;
-      }
-
-      if (ch1[i] > ch2[j]) {
-        j++;
-        continue;
-      }
-
-      if (ch1[i] < ch2[j]) {
-        i++;
-        continue;
+    for (char ch : s1.toCharArray()) {
+      if (s1.indexOf(ch) > -1 && s2.indexOf(ch) > -1) {
+        return "YES";
       }
     }
 
-    return result;
+    return "NO";
   }
 
   private static final Scanner scanner = new Scanner(System.in);
