@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class SimpleProducer {
     private static String TOPIC_NAME = "test";
-    private static String BOOTSTRAP_SERVERS = "{aws ec2 public ip}:9092";
+    private static String BOOTSTRAP_SERVERS = "193.123.247.175:9092";
 
     public static void main(String[] args) {
         Properties configs = new Properties();
