@@ -14,12 +14,12 @@ public class RansomNote {
 
     for (String str : note) {
       if (!list.remove(str)) {
-        System.out.println("NO");
+        System.out.println("No");
         return;
       }
     }
 
-    System.out.println("YES");
+    System.out.println("Yes");
   }
 
   private static final Scanner scanner = new Scanner(System.in);
