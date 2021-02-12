@@ -1,9 +1,8 @@
 package medium;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.Scanner;
-import java.util.Set;
 
 public class SherlockAndAnagrams {
 
@@ -11,15 +10,16 @@ public class SherlockAndAnagrams {
     int cnt = 0;
 
     for (int i = 1; i <= s.length() - 1; i++) {
-      Set<String> set = new HashSet();
       for (int j = 0; i + j <= s.length(); j++) {
-        char[] temp = s.substring(j, j + i).toCharArray();
-        System.out.println(new String(temp));
-//        Arrays.sort(temp);
-//        if (!set.add(new String(temp))) {
-//          System.out.println(new String(temp));
-//          cnt++;
-//        }
+        char[] temp1 = s.substring(j, j + i).toCharArray();
+        Arrays.sort(temp1);
+        for (int k = j + 1; i + k <= s.length(); k++) {
+          char[] temp2 = s.substring(k, k + i).toCharArray();
+          Arrays.sort(temp2);
+          if ((new String(temp1)).equals(new String(temp2))) {
+            cnt++;
+          }
+        }
       }
     }
 
