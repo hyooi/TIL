@@ -58,15 +58,12 @@ public class SpecificPositionLinkedList {
       int position) {
     SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
     SinglyLinkedListNode target = head;
-    for (int i = 0; i < position; i++) {
+    for (int i = 0; i < position - 1; i++) {
       target = target.next;
     }
 
-    if (target == null) {
-      head = newNode;
-    } else {
-      target = newNode;
-    }
+    newNode.next = target.next;
+    target.next = newNode;
     return head;
   }
 
