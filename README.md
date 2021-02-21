@@ -8,3 +8,4 @@ Commits about **Today I learned**
 - Oauth
 - MSA
 - Kafka
+- Kotlin
