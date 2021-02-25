@@ -3,6 +3,7 @@ fun main(args: Array<String>) {
     val func: (Int, Int) -> Int = { x, y -> x + y }
     println(func(5, 10))    // 15
 
+    // 위와 같은 연산을 할 때, x만 먼저 알고 y는 언제 아는지 모르는 경우 부분 적용함수를 사용함
     val partial = func.partialAppliedFunction(5)
 
     // doSomething
@@ -28,6 +29,8 @@ fun main(args: Array<String>) {
 
 }
 
+// 무슨 타입이 될지 모를 때 partial applied function사용
+// P1, P2 두 타입의 파라미터를 받아서 R타입을 반환하는 함수
 fun <P1, P2, R> ((P1, P2) -> R).partialAppliedFunction(x: P1): (P2) -> R {
     return { p2 -> this(x, p2) }
 }
