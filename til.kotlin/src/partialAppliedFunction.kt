@@ -39,5 +39,7 @@ fun <P1, P2, P3, R> ((P1, P2, P3) -> R).partialAppliedFunction(x: P1): (P2, P3) 
     return { p2, P3 -> this(x, p2, P3) }
 }
 
+// 값 하나는 컴파일 타임에 알고있지만, y, z는 런타임에 각각 따로 전달받는 경우 사용
+// 세개 파라미터가 모두 들어왔을때 비로소 평가가 됨
 fun <P1, P2, P3, R> ((P1, P2, P3) -> R).curried(): (P1) -> (P2) -> (P3) -> R =
     { p1: P1 -> { p2: P2 -> { p3: P3 -> this(p1, p2, p3) } } }
