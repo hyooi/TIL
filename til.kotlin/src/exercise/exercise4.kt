@@ -13,7 +13,8 @@ fun main(args: Array<String>) {
         Person("t-academy", 40, true)
     )
 
-    val result = TODO()
+    val result = list.filter { p -> p.age >= 30 && p.single }
+        .map { p -> p.name }
 
     require(result == listOf("java", "scala", "t-academy"))
 

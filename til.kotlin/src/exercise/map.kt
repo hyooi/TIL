@@ -1,6 +1,7 @@
 import practice.Cons
 import practice.FpList
 import practice.Nil
+import practice.appendTail
 
 fun main(args: Array<String>) {
 
@@ -19,6 +20,12 @@ fun main(args: Array<String>) {
 
 }
 
-fun <T, R> FpList<T>.map(transformer: (T) -> R): FpList<R> = TODO()
+fun <T, R> FpList<T>.map(transformer: (T) -> R): FpList<R> = when(this) {
+    Nil -> Nil
+    is Cons -> Cons(transformer(head), tail.map(transformer))
+}
 
-tailrec fun <T, R> FpList<T>.map(acc: FpList<R>, transformer: (T) -> R): FpList<R> = TODO()
+tailrec fun <T, R> FpList<T>.map(acc: FpList<R>, transformer: (T) -> R): FpList<R> = when(this) {
+    Nil -> acc
+    is Cons -> tail.map(acc.appendTail(transformer(head)), transformer)
+}

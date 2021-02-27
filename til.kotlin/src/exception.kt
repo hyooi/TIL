@@ -19,7 +19,10 @@ fun func(value: Int): Maybe<Int> {
 fun func2(x: Int, y: Int): Int =
     x * y
 
-
+/**
+ * Exception처리할 용도
+ * 값이 있다면 Just로 래핑하고, 없다면 None으로 래핑
+ * */
 sealed class Maybe<out T> {
     abstract fun <R> map(transformer: (T) -> R): Maybe<R>
 }
