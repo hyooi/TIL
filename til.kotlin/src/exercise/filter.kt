@@ -1,6 +1,7 @@
 import practice.Cons
 import practice.FpList
 import practice.Nil
+import practice.appendTail
 
 fun main(args: Array<String>) {
 
@@ -15,6 +16,20 @@ fun main(args: Array<String>) {
 
 }
 
-fun <T> FpList<T>.filter(predicate: (T) -> Boolean): FpList<T> = TODO()
+fun <T> FpList<T>.filter(predicate: (T) -> Boolean): FpList<T> = when(this) {
+    Nil -> Nil
+    is Cons -> if(predicate(head)) {
+        Cons(head, tail.filter(predicate))
+    } else {
+        tail.filter(predicate)
+    }
+}
 
-tailrec fun <T> FpList<T>.filter(acc: FpList<T>, predicate: (T) -> Boolean): FpList<T> = TODO()
+tailrec fun <T> FpList<T>.filter(acc: FpList<T>, predicate: (T) -> Boolean): FpList<T> = when (this) {
+    Nil -> Nil
+    is Cons -> if(predicate(head)) {
+        tail.filter(acc.appendTail(head), predicate)
+    } else {
+        tail.filter(acc, predicate)
+    }
+}

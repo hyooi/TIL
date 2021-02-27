@@ -15,4 +15,10 @@ fun main(args: Array<String>) {
 
 }
 
-tailrec fun <T> FpList<T>.drop(n: Int): FpList<T> = TODO()
+tailrec fun <T> FpList<T>.drop(n: Int): FpList<T> = when(this) {
+    Nil -> this
+    is Cons -> when(n) {
+        0 -> this
+        else -> tail.drop(n-1)
+    }
+}
