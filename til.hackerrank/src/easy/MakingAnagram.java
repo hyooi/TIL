@@ -1,36 +1,28 @@
 package easy;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 public class MakingAnagram {
 
   // Complete the makeAnagram function below.
   static int makeAnagram(String a, String b) {
-    char[] aArr = a.toCharArray();
-    Set<Character> aSet = new HashSet<>();
-    for (char temp : aArr) {
-      aSet.add(temp);
+    Map<Character, Integer> map = new HashMap<>();
+    for (char temp : a.toCharArray()) {
+      int i = map.getOrDefault(temp, 0);
+      map.put(temp, i + 1);
     }
 
-    char[] bArr = b.toCharArray();
-    Set<Character> bSet = new HashSet<>();
-    for (char temp : bArr) {
-      bSet.add(temp);
+    for (char temp : b.toCharArray()) {
+      int i = map.getOrDefault(temp, 0);
+      map.put(temp, i - 1);
     }
 
-    return count(aSet, bSet)
-        + count(bSet, aSet)
-        + (a.length() - aSet.size())
-        + (b.length() - bSet.size());
-  }
-
-  private static int count(Set<Character> str, Set<Character> list) {
-    return (int) str.stream()
-        .filter(s -> !list.contains(s))
-        .count();
+    return map.values()
+        .stream()
+        .reduce(0, (i1, i2) -> i1 + Math.abs(i2));
   }
 
   private static final Scanner scanner = new Scanner(System.in);
