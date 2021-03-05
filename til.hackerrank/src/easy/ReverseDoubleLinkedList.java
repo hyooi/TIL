@@ -42,11 +42,10 @@ public class ReverseDoubleLinkedList {
     }
   }
 
-  public static void printDoublyLinkedList(DoublyLinkedListNode node, String sep)
-      throws IOException {
+  public static void printDoublyLinkedList(DoublyLinkedListNode node, String sep) {
     while (node != null) {
 //      bufferedWriter.write(String.valueOf(node.data));
-      System.out.println(String.valueOf(node.data));
+      System.out.println(node.data);
       node = node.next;
 
       if (node != null) {
@@ -58,11 +57,16 @@ public class ReverseDoubleLinkedList {
 
   static DoublyLinkedListNode reverse(DoublyLinkedListNode head) {
     while (head != null) {
-      DoublyLinkedListNode node = head.next;
-      node.next = head;
-      head.next = null;
+      DoublyLinkedListNode prev = head.prev;
+      DoublyLinkedListNode next = head.next;
+      head.prev = next;
+      head.next = prev;
 
-      head = node;
+      if (next == null) {
+        return head;
+      }
+
+      head = next;
     }
 
     return head;
