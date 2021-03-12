@@ -1,13 +1,11 @@
-package spring.bean.java.config;
+package spring.bean.eager.vs.lazy.init;
 
-import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
 @ToString
-class Employee{
+class Employee {
   private int id;
   private String name;
 }
