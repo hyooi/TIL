@@ -2,7 +2,7 @@ package spring.bean.java.config;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class Main {
+class Main {
 
   public static void main(String[] args) {
 //    method 1

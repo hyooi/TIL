@@ -1,6 +1,6 @@
 package spring.bean.java.config;
 
-public class EmployeeManagerImpl implements EmployeeManager {
+class EmployeeManagerImpl implements EmployeeManager {
 
   @Override
   public Employee create() {
