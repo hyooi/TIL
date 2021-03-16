@@ -1,3 +1,4 @@
+/*
 package spring.dispatcherservlet.config;
 
 import javax.servlet.Filter;
@@ -39,3 +40,4 @@ public class ApplicationInitializer3 extends AbstractDispatcherServletInitialize
     return new Filter[] {new HiddenHttpMethodFilter(), new CharacterEncodingFilter() };
   }
 }
+*/
