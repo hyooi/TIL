@@ -1,3 +1,4 @@
+/*
 package spring.dispatcherservlet.config;
 
 import javax.servlet.ServletContext;
@@ -7,6 +8,8 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import spring.bean.java.config.AppConfig;
+
 
 public class ApplicationInitializer2 implements WebApplicationInitializer {
 
@@ -27,3 +30,4 @@ public class ApplicationInitializer2 implements WebApplicationInitializer {
     dispatcher.addMapping("/");
   }
 }
+*/
