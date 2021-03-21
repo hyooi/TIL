@@ -22,7 +22,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   // 데모 사용자 : user, admin
   @Override
-
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.inMemoryAuthentication()
         .passwordEncoder(passwordEncoder)
@@ -34,12 +33,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
-        .antMatchers("/login").permitAll()
-        .antMatchers("/admin/**").hasRole("ADMIN")
-        .antMatchers("/**").hasAnyRole("ADMIN", "USER")
-        .and().formLogin()
-        .and().logout().logoutSuccessUrl("/login").permitAll()
-        .and().csrf().disable();
+        .antMatchers("/login")
+        .permitAll()
+        .antMatchers("/**")
+        .hasAnyRole("ADMIN", "USER")
+        .and()
+        .formLogin()
+        .loginPage("/login")
+        .defaultSuccessUrl("/home")
+        .failureUrl("/login?error=true")
+        .permitAll()
+        .and()
+        .logout()
+        .logoutSuccessUrl("/login?logout=true")
+        .invalidateHttpSession(true)
+        .permitAll()
+        .and()
+        .csrf()
+        .disable();
   }
 
   @Bean
@@ -48,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Bean
-  CorsConfigurationSource corsConfigurationSource() {
+  public CorsConfigurationSource corsConfigurationSource() {
     org.springframework.web.cors.CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(Collections.singletonList("https:example.com"));
     configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
