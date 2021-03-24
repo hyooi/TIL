@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
 @Configuration
-@EnableReactiveMongoRepositories(basePackages = "dao")
+@EnableReactiveMongoRepositories(basePackages = "com.spring.webflux.repository")
 public class MongoConfig extends AbstractReactiveMongoConfiguration {
 
   @Value("${port}")
