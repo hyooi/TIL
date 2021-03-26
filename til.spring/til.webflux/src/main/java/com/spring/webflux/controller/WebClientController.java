@@ -1,6 +1,7 @@
 package com.spring.webflux.controller;
 
 import com.spring.webflux.model.Employee;
+import java.time.Duration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,8 @@ public class WebClientController {
     return webClient.get()
         .uri("/employees")
         .retrieve()
-        .bodyToFlux(Employee.class);
+        .bodyToFlux(Employee.class)
+        .timeout(Duration.ofMillis(10000));
   }
 
   @GetMapping("/test2")
@@ -32,7 +34,8 @@ public class WebClientController {
         .retrieve()
         .onStatus(HttpStatus.NOT_FOUND::equals,
             clientResponse -> Mono.empty())
-        .bodyToMono(Employee.class);
+        .bodyToMono(Employee.class)
+        .timeout(Duration.ofMillis(10000));
   }
 
   @GetMapping("/test3")
