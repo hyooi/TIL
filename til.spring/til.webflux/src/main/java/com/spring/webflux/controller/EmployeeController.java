@@ -32,19 +32,22 @@ public class EmployeeController {
   }
 
   @GetMapping("/{id}")
+  @ResponseStatus(HttpStatus.OK)
   public ResponseEntity<Mono<Employee>> findById(@PathVariable("id") Integer id) {
     Mono<Employee> e = employeeService.findById(id);
-    HttpStatus status = e != null? HttpStatus.OK : HttpStatus.NOT_FOUND;
+    HttpStatus status = e != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 
     return new ResponseEntity<>(e, status);
   }
 
   @GetMapping("/name/{name}")
+  @ResponseStatus(HttpStatus.OK)
   public Flux<Employee> findByName(@PathVariable("name") String name) {
     return employeeService.findByName(name);
   }
 
   @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+  @ResponseStatus(HttpStatus.OK)
   public Flux<Employee> findAll() {
     return employeeService.findAll();
   }

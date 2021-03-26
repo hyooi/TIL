@@ -2,6 +2,7 @@ package com.spring.webflux.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.context.annotation.Scope;
@@ -15,6 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
 
   private @Id
