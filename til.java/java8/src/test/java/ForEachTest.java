@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class ForEach {
+public class ForEachTest {
 
   @Test
   @DisplayName("forEach사용해 iterate")
