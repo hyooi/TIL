@@ -1,8 +1,14 @@
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -139,5 +145,35 @@ public class StreamTest {
         .get());
   }
 
+  @Test
+  @DisplayName("stream distinct")
+//stream distinct는 중복element를 찾기 위해 equals를 사용함
+  void stream_distinct() {
+    var lokesh = new Person(1, "Lokesh", "Gupta");
+    var brian = new Person(2, "Brian", "Clooney");
+    var alex = new Person(3, "Alex", "Kolen");
+
+    var list = Arrays.asList(lokesh, brian, alex, lokesh, brian, lokesh);
+    var distinctElements = list.stream()
+        .filter(distinctByKey(Person::getId))
+        .collect(Collectors.toList());
+
+    System.out.println(distinctElements);
+  }
+
+  private <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
+    var map = new ConcurrentHashMap<>();
+    return t -> map.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+  }
+
+  @AllArgsConstructor
+  @ToString
+  @Getter
+  private static class Person {
+
+    private final Integer id;
+    private final String fname;
+    private final String lname;
+  }
 
 }
