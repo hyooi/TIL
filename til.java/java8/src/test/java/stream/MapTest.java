@@ -1,3 +1,5 @@
+package stream;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -6,7 +8,7 @@ import lombok.Getter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class StreamMapTest {
+public class MapTest {
 
   @Test
   @DisplayName("list의 값에서 salary만 조회")

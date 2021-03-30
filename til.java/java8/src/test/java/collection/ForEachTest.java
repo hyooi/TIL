@@ -1,3 +1,5 @@
+package collection;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -33,13 +35,13 @@ public class ForEachTest {
     map.put("B", "Brian");
     map.put("C", "Charles");
 
-    map.forEach((k,v) -> System.out.println("key = " + k + ", value = " + v));
+    map.forEach((k, v) -> System.out.println("key = " + k + ", value = " + v));
   }
 
   @Test
   @DisplayName("사용자지정 BiConsumer")
   void customBiConsumer() {
-    BiConsumer<String, Integer> action = (a,b) -> {
+    BiConsumer<String, Integer> action = (a, b) -> {
       System.out.println("key is : " + a);
       System.out.println("value is : " + b);
     };
@@ -56,22 +58,22 @@ public class ForEachTest {
   @Test
   @DisplayName("stream을 사용한 foreach예제")
   void forEachOverStreamElements() {
-    List<Integer> numberList = Arrays.asList(1,2,3,4,5);
+    List<Integer> numberList = Arrays.asList(1, 2, 3, 4, 5);
     Consumer<Integer> action = System.out::println;
 
     numberList.stream()
-        .filter(n -> n%2 == 0)
+        .filter(n -> n % 2 == 0)
         .forEach(action);
   }
 
   @Test
   @DisplayName("stream을 사용한 foreachOrdered예제")
   void forEachOrderedOverStreamElements() {
-    List<Integer> list = Arrays.asList(1,2,3,4,5);
+    List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
     Consumer<Integer> action = System.out::println;
 
     list.stream()
-        .filter(n -> n%2 == 0)
+        .filter(n -> n % 2 == 0)
         .parallel() //paralled를 사용하는경우 element의 순서를 보증하지 않으므로 forEachOrdered를 사용함
         .forEachOrdered(action);
   }
