@@ -171,9 +171,9 @@ public class StreamTest {
   @Getter
   private static class Person {
 
-    private Integer id;
-    private String fname;
-    private String lname;
+    private final Integer id;
+    private final String fname;
+    private final String lname;
   }
 
 }
