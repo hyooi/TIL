@@ -1,12 +1,10 @@
-package stream;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class Java9 {
+public class StreamTest {
 
   @Test
   @DisplayName("takewhile예제")
