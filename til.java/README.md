@@ -13,9 +13,11 @@ StackWalker.getInstance().forEach(System.out::println);
 
 ```
 
-
 ### javadoc
 - 기존 html4.01로 생성했던 javadoc을 html5로 생성 가능
+
+### String compression
+- char[]였던 String클래스가 byte[]로 변경됨. 그러면서 메모리 사용량이 50%로 줄어듦
 
 # Java10
 ### 로컬변수 타입추론
