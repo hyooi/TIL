@@ -12,6 +12,7 @@ public class FilesTest {
   @Test
   @SneakyThrows
   @DisplayName("파일읽기")
+    //readString은 파일이 2gb이상이면 oom발생
   void read_file() {
     var txtFileUri = getClass().getClassLoader().getResource("temp.log").toURI();
     System.out.println(Files.readString(Path.of(txtFileUri), Charset.defaultCharset()));
