@@ -58,6 +58,9 @@ Hello World!
 
 # Java12
 
+###1. 유니코드11 지원
+
+###2. 화살표 구문 switch
 
 # Java13
 
