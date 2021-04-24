@@ -62,11 +62,45 @@ Hello World!
 
 ### 2. 화살표 구문 switch
 
-# Java13
 
 
 # Java14
 
+### 1. 패턴 매칭 instanceof(preview)
+obj가 String타입인지 확인하고 s에 바인딩함
+```java
+if (obj instanceof String s) {
+    // can use s here
+} else {
+    // can't use s here
+}
+```
+
+### 2. 텍스트 블록(preview)
+```java
+String textBlock = """
+                    World""";
+```
+
+### 3. switch case
+```java
+public static Boolean isWeekDay (Day day) 
+{
+    Boolean result = switch(day) {
+        case MON, TUE, WED, THUR, FRI ->
+        { 
+            System.out.println("It is WeekDay");
+            yield true; 
+        }
+        case SAT, SUN ->
+        { 
+            System.out.println("It is Weekend");
+            yield false; 
+        }
+    };
+    return result;
+}
+```
 
 # Java15
 
