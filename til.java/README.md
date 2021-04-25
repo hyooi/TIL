@@ -103,4 +103,18 @@ public static Boolean isWeekDay (Day day)
 ```
 
 # Java15
+### 1. sealed class, sealed interface(preview)
+```
+sealed class Account
+    permits CurrentAccount, SavingAccount, LoanAccount {
+}
+  
+final class CurrentAccount extends Account {}
+non-sealed class SavingAccount extends Account {}
+sealed class LoanAccount extends Account permits HomeloanAccount, AutoloanAccount {}
+  
+final class HomeloanAccount extends LoanAccount{}
+final class AutoloanAccount extends LoanAccount{}
+```
 
+### 2. text block
