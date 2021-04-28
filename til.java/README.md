@@ -1,3 +1,6 @@
+# Oracle Java SE Support Roadmap
+![picture](oracle-java-roadmap.PNG)
+
 # Java9
 ### 1. 인터페이스에서 private method사용 가능
 
@@ -118,3 +121,14 @@ final class AutoloanAccount extends LoanAccount{}
 ```
 
 ### 2. text block
+
+
+# Java16
+### 1. instanceof 패턴매칭 
+### 2. records
+데이터 설정 및 가져올 때 필요한 상용구 코드를 제거함. immutable이며 final임 <br/>
+ex. 생성자, 게터, hashcode, equals
+
+### 3. 패키징 툴
+자체 포함된 Java 응용 프로그램을 패키징 하기 위한 jpackage 도구를 제공함.<br/>
+msi, exe (Windows), pkg, dms (macOS), deb, rpm (Linux) 형식을 지원
