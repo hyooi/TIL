@@ -1,4 +1,4 @@
-package tutorial.introduction
+package tutorial.`01_introduction`
 
 fun main() {
     infix fun Int.times(str: String) = str.repeat(this) //times: infix extension함수

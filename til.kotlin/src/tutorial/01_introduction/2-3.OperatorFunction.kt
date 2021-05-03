@@ -1,4 +1,4 @@
-package tutorial.introduction
+package tutorial.`01_introduction`
 
 fun main() {
     // 특정 기능을 업그레이드 할 수 있음

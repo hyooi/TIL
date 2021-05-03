@@ -1,4 +1,4 @@
-package tutorial.controlFlow
+package tutorial.`02_controlFlow`
 
 fun main() {
     val cakes = listOf("carrot", "cheese", "chocolate")

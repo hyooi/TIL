@@ -1,4 +1,4 @@
-package tutorial.controlFlow
+package tutorial.`02_controlFlow`
 
 fun main() {
     // 3항연산자 대신 이런식으로 활용함

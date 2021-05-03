@@ -1,4 +1,4 @@
-package tutorial.introduction
+package tutorial.`01_introduction`
 
 open class Tiger(val origin: String) {
     fun sayHello() {

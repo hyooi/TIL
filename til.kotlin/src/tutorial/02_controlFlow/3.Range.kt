@@ -1,4 +1,4 @@
-package tutorial.controlFlow
+package tutorial.`02_controlFlow`
 
 fun main() {
     /* 숫자 RANGE */

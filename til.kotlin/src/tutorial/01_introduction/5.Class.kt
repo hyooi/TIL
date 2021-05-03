@@ -1,4 +1,4 @@
-package tutorial.introduction
+package tutorial.`01_introduction`
 
 class Customer
 class Contact(val id: Int, var email: String)

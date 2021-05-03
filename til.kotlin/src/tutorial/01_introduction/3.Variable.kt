@@ -1,4 +1,4 @@
-package tutorial.introduction
+package tutorial.`01_introduction`
 
 fun main() {
     var a : String = "initial" // 가변

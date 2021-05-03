@@ -1,4 +1,4 @@
-package tutorial.controlFlow
+package tutorial.`02_controlFlow`
 
 fun eatACake() = println("Eat a Cake")
 fun bakeACake() = println("Bake a Cake")

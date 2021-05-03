@@ -1,4 +1,4 @@
-package tutorial.controlFlow
+package tutorial.`02_controlFlow`
 
 class Animal(val name: String)
 class Zoo(private val animal: List<Animal>) {
