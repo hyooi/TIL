@@ -15,9 +15,9 @@ class LuckDispatcher { //일반 object
  */
 fun rentPrice(standardDays: Int, festivityDays: Int, specialDays: Int): Unit {
     val dayRates = object { //단일 오브젝트 생성
-        var standard : Int = 30 * standardDays;
-        var festivity : Int = 50 * festivityDays;
-        var special : Int = 100 * specialDays;
+        var standard : Int = 30 * standardDays
+        var festivity : Int = 50 * festivityDays
+        var special : Int = 100 * specialDays
     }
 
     val total = dayRates.standard + dayRates.festivity + dayRates.special
