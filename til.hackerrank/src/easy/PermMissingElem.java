@@ -12,11 +12,12 @@ public class PermMissingElem {
       }
     }
 
-    return 1;
+    return A.length + 1;
   }
 
   public static void main(String[] args) {
     System.out.println(PermMissingElem.solution(new int[]{2, 3, 1, 5}));
     System.out.println(PermMissingElem.solution(new int[]{}));
+    System.out.println(PermMissingElem.solution(new int[]{1}));
   }
 }
