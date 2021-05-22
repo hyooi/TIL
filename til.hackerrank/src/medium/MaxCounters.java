@@ -2,6 +2,7 @@ package medium;
 
 import java.util.Arrays;
 
+//FIXME 77%
 public class MaxCounters {
 
   public static int[] solution(int N, int[] A) {
