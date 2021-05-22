@@ -7,22 +7,15 @@ public class MaxCounters {
   public static int[] solution(int N, int[] A) {
     int[] result = new int[N];
     int max = 0;
-    int maxCnt = 0;
 
-    for (int i = 0; i < A.length; i++) {
-      if (A[i] == N + 1) {
-        maxCnt++;
+    for (int a : A) {
+      if (a == N + 1) {
+        Arrays.fill(result, max);
       } else {
-        result[A[i] - 1]++;
+        result[a - 1]++;
 
-        if (result[A[i] - 1] > max) {
-          max = result[A[i] - 1];
-        }
-      }
-
-      if (i == A.length - 1) {
-        for (int j = 0; i < result.length; j++) {
-          result[j] += maxCnt;
+        if (result[a - 1] > max) {
+          max = result[a - 1];
         }
       }
     }
