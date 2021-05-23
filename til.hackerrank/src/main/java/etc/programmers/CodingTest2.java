@@ -1,4 +1,4 @@
-package easy;
+package etc.programmers;
 
 public class CodingTest2 {
 
