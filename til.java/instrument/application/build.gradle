@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.javassist', name: 'javassist', version: '3.28.0-GA'
+}
+
+test {
+    useJUnitPlatform()
+}
