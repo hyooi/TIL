@@ -1,11 +1,10 @@
 import com.sun.tools.attach.VirtualMachine;
 import java.io.File;
-import java.io.IOException;
 import java.util.Optional;
 
 public class AgentLoader {
   public void run(String[] args) {
-    String agentFilePath = "agent.jar";
+    String agentFilePath = args[1];
     String applicationName = "MyAtmApplication";
 
     Optional<String> jvmProcessOpt = Optional.ofNullable(VirtualMachine.list()
@@ -27,7 +26,7 @@ public class AgentLoader {
       System.out.println("Attaching to target JVM with PID: " + jvmPid);
 
       VirtualMachine jvm = VirtualMachine.attach(jvmPid);
-      jvm.loadAgent(agentFile.getAbsolutePath());
+      jvm.loadAgent(agentFile.getCanonicalFile().getAbsolutePath());
       jvm.detach();
     } catch (Exception e) {
       throw new RuntimeException(e);

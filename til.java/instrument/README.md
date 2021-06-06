@@ -6,3 +6,8 @@
 - 에이전트 정의 방법
     - premain: jvm시작 시 -javaagent 아규먼트를 이용해 에이전트를 정적으로 로드(실행 전에 바이트코드를 수정함)
     - agentmain: java attach api를 사용해 jvm에 에이전트를 동적으로 로드함(이미 실행중인 jvm에 로드)
+
+```bash
+./gradlew clean build
+java -javaagent:.\agent\build\libs\agent-1.0-SNAPSHOT.jar .\application\build\libs\application-1.0-SNAPSHOT.jar
+```

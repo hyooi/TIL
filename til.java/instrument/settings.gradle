@@ -1,5 +1,4 @@
 rootProject.name = 'instrument'
 include 'agent'
 include 'application'
-include 'application'
 

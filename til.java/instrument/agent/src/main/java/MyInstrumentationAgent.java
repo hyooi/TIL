@@ -1,16 +1,17 @@
 import java.lang.instrument.Instrumentation;
+import java.util.Arrays;
 
 public class MyInstrumentationAgent {
   public static void premain(String agentArgs, Instrumentation inst) {
     System.out.println("[Agent] In premain method");
-    String className = "application.MyAtm";
+    String className = "MyAtmApplication";
 
     transformClass(className, inst);
   }
 
   public static void agentmain(String agentArgs, Instrumentation inst) {
     System.out.println("[Agent] In agentmain method");
-    String className = "MyAtm";
+    String className = "MyAtmApplication";
 
     transformClass(className, inst);
   }
@@ -29,6 +30,7 @@ public class MyInstrumentationAgent {
       ex.printStackTrace();
     }
 
+    System.out.println(Arrays.toString(inst.getAllLoadedClasses()));
     for(Class<?> clazz : inst.getAllLoadedClasses()) {
       if(clazz.getName().equals(className)) {
         targetCls = clazz;

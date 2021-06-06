@@ -2,6 +2,8 @@ plugins {
     id 'java'
 }
 
+group 'org.example'
+version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -11,6 +13,18 @@ dependencies {
     implementation group: 'org.javassist', name: 'javassist', version: '3.28.0-GA'
 }
 
-test {
-    useJUnitPlatform()
+jar {
+    manifest {
+        attributes(
+                "Agent-Class": "MyInstrumentationAgent",
+                "Premain-Class": "MyInstrumentationAgent",
+                "Can-Redefine-Classes": true,
+                "Can-Retransform-Classes": true
+        )
+    }
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
 }
