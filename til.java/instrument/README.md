@@ -9,5 +9,11 @@
 
 ```bash
 ./gradlew clean build
-java -javaagent:.\agent\build\libs\agent-1.0-SNAPSHOT.jar .\application\build\libs\application-1.0-SNAPSHOT.jar
+
+# premain
+java -javaagent:./agent/build/libs/agent-1.0-SNAPSHOT.jar -jar ./application/build/libs/application-1.0-SNAPSHOT.jar StartMyAtmApplication 1000 100 1000
+
+# agentmain
+java -jar ./application/build/libs/application-1.0-SNAPSHOT.jar StartMyAtmApplication 1000 100 1000
+java -jar ./application/build/libs/application-1.0-SNAPSHOT.jar LoadAgent d:HK/git/TIL/til.java/instrument/agent/build/libs/agent-1.0.SNAPSHOT.jar
 ```

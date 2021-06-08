@@ -4,14 +4,14 @@ import java.util.Arrays;
 public class MyInstrumentationAgent {
   public static void premain(String agentArgs, Instrumentation inst) {
     System.out.println("[Agent] In premain method");
-    String className = "MyAtmApplication";
+    String className = "MyAtm";
 
     transformClass(className, inst);
   }
 
   public static void agentmain(String agentArgs, Instrumentation inst) {
     System.out.println("[Agent] In agentmain method");
-    String className = "MyAtmApplication";
+    String className = "MyAtm";
 
     transformClass(className, inst);
   }
@@ -45,6 +45,7 @@ public class MyInstrumentationAgent {
   }
 
   private static void transform(Class<?> targetCls, ClassLoader targetClassLoader, Instrumentation inst) {
+    System.out.println("[Agent] targetCls: " + targetCls.getName() + ", classLoader: " + targetClassLoader.getName());
     AtmTransformer dt = new AtmTransformer(targetCls.getName(), targetClassLoader);
     inst.addTransformer(dt, true);
 

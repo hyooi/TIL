@@ -17,9 +17,9 @@ jar {
     manifest {
         attributes(
                 "Agent-Class": "MyInstrumentationAgent",
-                "Premain-Class": "MyInstrumentationAgent",
                 "Can-Redefine-Classes": true,
-                "Can-Retransform-Classes": true
+                "Can-Retransform-Classes": true,
+                "Premain-Class": "MyInstrumentationAgent"
         )
     }
     from {
