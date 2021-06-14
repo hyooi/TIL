@@ -1,10 +1,11 @@
 package sql;
 
-import org.apache.camel.impl.JndiRegistry;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.apache.camel.spi.Registry;
 import org.apache.camel.support.SimpleRegistry;
-import org.apache.camel.test.junit4.CamelTestSupport;
-import org.junit.Before;
+import org.apache.camel.test.junit5.CamelTestSupport;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -16,11 +17,6 @@ class SelectorTest extends CamelTestSupport {
       .addScript("init.sql")
       .build();
 
-  @Before
-  void init() throws Exception {
-    super.setUp();
-  }
-
   @Override
   protected Registry createCamelRegistry() {
     var reg = new SimpleRegistry();
@@ -31,6 +27,10 @@ class SelectorTest extends CamelTestSupport {
 
   @Test
   void test() {
-    new Selector("SELECT ID, CONTENT FROM TEMP_TABLE", context(), template()).run();
+    var result = new Selector("SELECT * FROM TEMP_TABLE", context(), template()).run();
+    assertEquals("1", result.get(0).get("ID"));
+    assertEquals("CONTENT1", result.get(0).get("CONTENT"));
+    assertEquals("2", result.get(1).get("ID"));
+    assertEquals("CONTENT2", result.get(1).get("CONTENT"));
   }
 }

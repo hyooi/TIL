@@ -1,9 +1,10 @@
 package sql;
 
+import java.util.List;
+import java.util.Map;
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.model.ModelCamelContext;
 
 public class Selector {
   private final String sql;
@@ -16,7 +17,7 @@ public class Selector {
     this.template = template;
   }
 
-  public void run() {
+  public List<Map<String, Object>> run() {
     try {
       var uri = "sql:"+sql+"?dataSource=testdb";
       context.addRoutes(new RouteBuilder() {
@@ -27,11 +28,12 @@ public class Selector {
         }
       });
 
-      var context = template.send("direct:start", exchange -> {});
-      System.out.println(context.getIn().getBody());
+      var res = template.send("direct:start", exchange -> {});
+      return (List< Map<String, Object>>) res.getOut().getBody();
 
     } catch (Exception e) {
       e.printStackTrace();
+      return null;
     }
   }
 }
