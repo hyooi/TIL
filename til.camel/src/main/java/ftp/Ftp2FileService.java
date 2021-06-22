@@ -15,4 +15,15 @@ public class Ftp2FileService {
     this.template = template;
   }
 
-  public Exchange run()
+  public Exchange run() {
+    context.addRoutes(new RouteBuilder() {
+      @Override
+      public void configures() throws Exception {
+        from("file:D:/HK/oracle-cloud")
+          .to("file:D:/HK/oracle-cloud/temp")
+          .end();
+      }
+    });
+    
+    return template.send("file:D:/HK/oracle-cloud", new DefaultExchange(context());
+ }
