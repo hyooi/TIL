@@ -6,7 +6,7 @@ import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.support.DefaultExchange;
 
-public class FtpService {
+public class Ftp2FtpService {
   private final String hostname;
   private final String username;
   private final String password;
@@ -15,7 +15,7 @@ public class FtpService {
   private final CamelContext context;
   private final ProducerTemplate template;
 
-  public FtpService(String hostname, String username, String password,
+  public Ftp2FtpService(String hostname, String username, String password,
       String directoryName,
       CamelContext context, ProducerTemplate template) {
     this.hostname = hostname;

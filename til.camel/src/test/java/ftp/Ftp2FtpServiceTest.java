@@ -4,10 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.apache.commons.net.ftp.FTPClient;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockftpserver.fake.FakeFtpServer;
@@ -16,7 +14,7 @@ import org.mockftpserver.fake.filesystem.DirectoryEntry;
 import org.mockftpserver.fake.filesystem.FileEntry;
 import org.mockftpserver.fake.filesystem.UnixFakeFileSystem;
 
-class FtpServiceTest extends CamelTestSupport {
+class Ftp2FtpServiceTest extends CamelTestSupport {
 
   private FakeFtpServer ftpServer;
   private FTPClient ftpClient;
@@ -46,7 +44,7 @@ class FtpServiceTest extends CamelTestSupport {
     assertEquals(1, ftpClient.listFiles("").length);
 
     var result =
-        new FtpService("localhost", "user", "password", "/", context(), template()).run();
+        new Ftp2FtpService("localhost", "user", "password", "/", context(), template()).run();
     assertEquals(226, result.getIn().getHeader("CamelFtpReplyCode", Integer.class));
     assertEquals("mydata-"+ LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE) + ".txt",
         result.getIn().getHeader("CamelFileNameProduced",
