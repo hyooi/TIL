@@ -1,5 +1,7 @@
 package ftp;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.apache.commons.net.ftp.FTPClient;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,6 +47,8 @@ class Ftp2FileServiceTest extends CamelTestSupport {
 
   @Test
   void test() throws Exception {
+    assertEquals(1, ftpClient.listFiles("").length);
+
     var result = new Ftp2FileService(context, template).run();
     System.out.println(result);
   }

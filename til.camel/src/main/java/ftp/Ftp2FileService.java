@@ -19,12 +19,12 @@ public class Ftp2FileService {
     context.addRoutes(new RouteBuilder() {
       @Override
       public void configure() {
-        from("file:D:/HK/oracle-cloud")
-            .to("file:D:/HK/oracle-cloud/temp")
+        from("ftp://user@localhost?password=password")
+            .to("file://D:/HK/oracle-cloud&allowNullBody=true")
             .end();
       }
     });
 
-    return template.send("file:D:/HK/oracle-cloud", new DefaultExchange(context));
+    return template.send("ftp://user@localhost?password=password", new DefaultExchange(context));
   }
 }
