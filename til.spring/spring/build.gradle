@@ -16,9 +16,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.projectlombok:lombok:1.18.18'
-    implementation group: 'io.projectreactor', name: 'reactor-bus', version: '2.0.8.RELEASE'
+    implementation ('io.projectreactor:reactor-bus:2.0.8.RELEASE') {
+        exclude group: 'io.projectreactor', module: 'reactor-core'
+    }
+    implementation group: 'io.projectreactor', name: 'reactor-core', version: '2.0.8.RELEASE'
 
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 

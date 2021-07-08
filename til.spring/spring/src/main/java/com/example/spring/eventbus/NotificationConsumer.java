@@ -1,9 +1,10 @@
 package com.example.spring.eventbus;
 
-import lombok.val;
+import org.springframework.stereotype.Service;
 import reactor.bus.Event;
 import reactor.fn.Consumer;
 
+@Service
 public class NotificationConsumer implements Consumer<Event<NotificationData>> {
 
   private final NotificationService service;
@@ -14,7 +15,7 @@ public class NotificationConsumer implements Consumer<Event<NotificationData>> {
 
   @Override
   public void accept(Event<NotificationData> notificationDataEvent) {
-    val notificationData = notificationDataEvent.getData();
+    var notificationData = notificationDataEvent.getData();
     try {
       service.initiateNotification(notificationData);
     } catch (InterruptedException ignored) {
