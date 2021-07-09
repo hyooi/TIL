@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+<!--  <style>-->
+<!--    body {-->
+<!--      display: flex;-->
+<!--      flex-direction: column;-->
+<!--      justify-content: center;-->
+
+<!--      height: 100vh;-->
+<!--      background-color: black;-->
+<!--    }-->
+<!--    .hello {-->
+<!--      color: white;-->
+<!--      font-size: 8vw;-->
+<!--      text-align: center;-->
+<!--    }-->
+<!--  </style>-->
+</head>
+<body>
+<div class="hello" th:text="${message}"></div>
+Current time is <span th:text="${servertime}"></span>
+<br>
+
+<td>
+  <span th:if="${message} == 'M'" th:text="Male"></span>
+  <span th:unless="${message} == 'M'" th:text="Female"></span>
+</td>
+
+<td th:switch="${message}">
+  <span th:case="'M'" th:text="Male"></span>
+  <span th:case="'F'" th:text="Female"></span>
+</td>
+</body>
+</html>
