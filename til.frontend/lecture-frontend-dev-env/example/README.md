@@ -39,5 +39,5 @@ npm install -D webpack webpack-cli
 
 - 하나의 js로 번들링
 ``` bash
-node_modules/.bin/webpack --mode development --entry ./src/app.js -o ./dist/main.js
+node_modules/.bin/webpack --mode development --entry ./src/app.js -o ./dist
 ```
