@@ -1,4 +1,5 @@
 import View from "./View.js";
+import defaultImage from "../images/default-image.jpg";
 
 export default class ResultView extends View {
   constructor(el) {
@@ -18,16 +19,16 @@ export default class ResultView extends View {
 
   getSearchResultsHtml(data) {
     return (
-      data.reduce((html, item) => {
-        html += this.getSearchItemHtml(item);
-        return html;
-      }, "<ul>") + "</ul>"
+        data.reduce((html, item) => {
+          html += this.getSearchItemHtml(item);
+          return html;
+        }, "<ul>") + "</ul>"
     );
   }
 
   getSearchItemHtml(item) {
     return `<li>
-      <img src="${item.image}" onerror="this.src='src/images/default-image.jpg'"/>
+      <img src="${item.image}" onerror="this.src='${defaultImage}'"/>
       <p>${item.name}</p>
     </li>`;
   }

@@ -30,7 +30,7 @@
   display: inline-block;
   height: 20px;
   width: 20px;
-  background: url(images/times-circle.png?2a32eee45a9f280f743fb36b7c530d98) no-repeat 50%/contain;
+  background: url(images/times-circle.png) no-repeat 50%/contain;
   opacity: .15
 }
 
