@@ -1,3 +1,6 @@
+# 프론트엔드 개발환경의 이해 example
+
+## Node
 - init: package.json에 프로젝트 정보를 기록한다.
 ``` bash
 npm init
@@ -31,7 +34,7 @@ ex. ~1.2.3(1.2.3~1.3.0미만 버전 포함)
 ex. ^1.2.3(1.2.3~2.0.0미만 버전 포함)
 
 
-# 웹팩으로 번들링하기
+## 웹팩
 - webpack dev dependency로 추가
 ```bash
 npm install -D webpack webpack-cli
