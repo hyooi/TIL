@@ -53,3 +53,22 @@ build명령어 실행 시 webpack을 실행하도록 하면, 먼저 node_modules
 ```bash
 npm run build
 ```
+
+### 로더
+- 웹팩은 자바스크립트 모듈뿐만이 아니라 CSS,이미지, 폰트까지도 모듈로 본다.
+따라서 import를 통해 자바스크립트 코드로 해당 모듈들을 가져올 수 있다.
+  
+- css적용법
+1. css loader 및 style loader를 추가한다.
+2. css loader는 css를 모듈로 변환해주며, style loader는 자바스크립트로 변경된 css를
+동적으로 돔에 추가해준다.
+```bash
+npm install -D css-loader
+npm install -D style-loader
+```
+
+- 이미지 로드
+1. file loader를 통해 이미지를 로딩할 수 있는데,
+작은 이미지를 여러개 사용하는 경우 base64로 인코딩해 문자열 형태로 
+이미지를 사용하는 data uri scheme를 사용할 수 있다.
+2. 이 때 사용하는 것이 url loader!
