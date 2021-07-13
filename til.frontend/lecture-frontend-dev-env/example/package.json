@@ -1,0 +1,19 @@
+{
+  "name": "tmp3",
+  "version": "1.0.0",
+  "description": "프론트엔드 개발 환경의 이해 프로젝트입니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "echo \"빌드 스크립트입니다.\" && exit 0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
