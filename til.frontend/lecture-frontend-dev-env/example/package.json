@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "build": "echo \"빌드 스크립트입니다.\" && exit 0"
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",

@@ -41,3 +41,12 @@ npm install -D webpack webpack-cli
 ``` bash
 node_modules/.bin/webpack --mode development --entry ./src/app.js -o ./dist
 ```
+
+- webpack.config.js사용
+1. webpack.config.js를 정의하고, 
+2. package.json에 custom script를 설정한다.
+build명령어 실행 시 webpack을 실행하도록 하면, 먼저 node_modules의 webpack을 찾고,
+   없으면 전역 webpack을 찾아 webpack을 실행한다.
+```bash
+npm run build
+```
