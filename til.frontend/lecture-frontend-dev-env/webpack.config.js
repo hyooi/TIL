@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const webpack = require('webpack');
 
 module.exports = {
-  mode: "development", //development
+  mode: "production", //development
   entry: {
     main: "./src/app.js",
   },
@@ -44,7 +44,7 @@ module.exports = {
         env: process.env.NODE_ENV === 'development' ? '(개발용)' : '',
         minify: process.env.NODE_ENV === 'production' ? {
           collapseWhitespace: true, // 빈칸 제거
-          removeComments: true, // 주석 제거
+          removeComments: false, // 주석 제거
         } : false,
         hash: true,
       },
