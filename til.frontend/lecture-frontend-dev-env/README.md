@@ -185,4 +185,25 @@ npx src/eslint app.js --fix
 
 - 변경된 파일만 린트 수행
 
+## webpack dev server
 
+- 수정 시마다 리프레시되는 개발서버
+- 목업api 사용 가능
+
+```bash
+$ curl localhost:8081/api/keywords
+[{"keyword":"이탈리아"},{"keyword":"세프의요리"},{"keyword":"제철"},{"keyword":"홈파티"}]
+```
+
+### connect-api-mocker
+
+목업 api가 많은 경우 사용하기 편리함
+
+```bash
+$ curl localhost:8081/api/keywords
+[{"keyword":"이탈리아"},{"keyword":"세프의요리"},{"keyword":"제철"},{"keyword":"홈파티"}]
+```
+
+### hot module replacement
+
+- 웹팩 데브서버는 기본적으로 전체화면을 갱신하는데, 변경한 모듈만 변경하고 싶을 때 사함함

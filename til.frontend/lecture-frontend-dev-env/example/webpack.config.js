@@ -4,6 +4,7 @@ const banner = require("./banner.js")
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require("clean-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const apiMocker = require("connect-api-mocker")
 
 module.exports = {
   mode: "production", //development
@@ -71,4 +72,31 @@ module.exports = {
         ? [new MiniCssExtractPlugin({filename: `[name].css`})]
         : []),//production인 경우 css를 별도로 분리하여 속도 개선
   ],
+  devServer: {
+    contentBase: path.join(__dirname, "dist"), //정적파일을 제공하는 경로. default: output
+    publicPath: "/", //브라우저를 통해 접근하는 경로. 기본값 /
+    host: "localhost", //개발환경에서 도메인을 서버와 동일하게 사용해야 하는경우 사용
+    overlay: true, //빌드 시 에러,경고를 브라우저에 표시
+    port: 8081, //기본값 8080
+    stats: "errors-only", //메시지 레벨을 정할 수 있음
+    hot: true,
+    
+    //html5의 history api를 사용. 404가 발생하면 index.html로 리다이렉트
+    historyApiFallback: true,
+    before: (app, server, compiler) => {
+      app.use(apiMocker("/api", "mocks/api"))
+      // app.get("/api/keywords", (req, res) => {
+      //   res.json([
+      //     {keyword: "이탈리아"},
+      //     {keyword: "세프의요리"},
+      //     {keyword: "제철"},
+      //     {keyword: "홈파티"},
+      //   ])
+      // })
+    },
+    proxy: {
+      // api로 시작하는 http요청을 프록시해 localhost:8081로 요청
+      "/api": "http://localhost:8081",
+    },
+  },
 }
