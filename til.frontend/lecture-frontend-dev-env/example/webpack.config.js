@@ -36,7 +36,12 @@ module.exports = {
             // loader로 처리
           }
         }
-      }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader", // 바벨 로더를 추가한다
+      },
     ],
     // .js로 끝나는 모든 파일에 myloader.js를 적용한다
     // rules: [{
