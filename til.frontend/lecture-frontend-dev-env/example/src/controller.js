@@ -11,9 +11,7 @@ const controller = {
 export default controller
 
 if (module.hot) {
-  console.log("핫모듈 켜짐")
-
-  module.hot.accept("./view", () => {
-    console.log("view 모듈 변경됨")
+  module.hot.accept("./view", async () => {
+    view.render(await model.get(), controller.el) // 변경된 모듈로 교체
   })
 }

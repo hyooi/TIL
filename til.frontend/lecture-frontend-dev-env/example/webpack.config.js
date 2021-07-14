@@ -80,7 +80,7 @@ module.exports = {
     port: 8081, //기본값 8080
     stats: "errors-only", //메시지 레벨을 정할 수 있음
     hot: true,
-    
+
     //html5의 history api를 사용. 404가 발생하면 index.html로 리다이렉트
     historyApiFallback: true,
     before: (app, server, compiler) => {
