@@ -1,4 +1,5 @@
-# 프론트엔드 개발 환경의 이해 
+# 프론트엔드 개발 환경의 이해
+
 [프론트엔드 개발 환경의 이해](http://jeonghwan-kim.github.io/series/2019/12/09/frontend-dev-env-npm.html)
 
 ## Node
@@ -96,13 +97,13 @@ NODE_ENV=development npm run build
 - Clean webpack plugin: 빌드 전에 이전 결과물을 삭제함
 - MiniCssExtract plugin: 속도 개선을 위해 css를 별도의 파일로 분리
 
-
 ## 바벨
-ECMAScript2015 이상의 코드를 하위 버전으로 트랜스파일한다.
-인터넷 익스플로러나 구버전 브라우저와 같이 최신 JS를 읽지 못하는 환경에서 동작시키기 위해 사용한다.
 
-- 바벨 실행: node_modules에 babel command가 있으면 쓰고, 아니면 global babel사용
-babel core는 파싱, 출력만 진행. 변환을 하기 위해서는 플러그인 사용이 필요
+ECMAScript2015 이상의 코드를 하위 버전으로 트랜스파일한다. 인터넷 익스플로러나 구버전 브라우저와 같이 최신 JS를 읽지 못하는 환경에서 동작시키기 위해 사용한다.
+
+- 바벨 실행: node_modules에 babel command가 있으면 쓰고, 아니면 global babel사용 babel core는 파싱, 출력만 진행. 변환을 하기 위해서는
+  플러그인 사용이 필요
+
 ```bash
 npx babel app.js
 npx babel --plugins my-babel-plugin.js app.js
@@ -110,19 +111,78 @@ npx babel --plugins @babel/plugin-transform-block-scoping app.js //위의 custom
 ```
 
 ### 프리셋
-- 바벨 실행 시 상위처럼 일일이 플러그인을 지정하지는 않고, 보통 프리셋을 지정해 사용한다.
-목적에 맞게 하나 이상의 플러그인을 모아놓은 것을 프리셋이라 한다.
+
+- 바벨 실행 시 상위처럼 일일이 플러그인을 지정하지는 않고, 보통 프리셋을 지정해 사용한다. 목적에 맞게 하나 이상의 플러그인을 모아놓은 것을 프리셋이라 한다.
+
 ```bash
 npx babel app.js //프리셋 지정 후 실행해야 변환됨
 ```
 
 - 프리셋 예시
+
 1. preset-env: ECMAScript2015+ 변환 시 사용. 가장 많이 사용함
 2. preset-flow: flow변환 시 사용
 3. preset-react: react변환 시 사용
 4. preset-typescript: typescript변환 시 사용
 
-
 ### 폴리필
+
 - 변환 시 ECMAScript5로 변환하지 못하는 문법이 있을 수 있음(ex. Promise)
-이 때 폴리필을 통해 코드조각을 추가해 해결 가능
+  이 때 폴리필을 통해 코드조각을 추가해 해결 가능
+
+## ESLint
+
+- ECMAScript코드에서 문제점을 검사하고, 더 나은 코드로 정정하는 도구
+- 코드의 가독성을 높이고 잠재적인 오류와 버그를 제거
+
+```bash
+npx eslint ./src/app.js //lint실행
+npx eslint ./src/app.js --fix //lint실행 및 자동 수정
+```
+
+### Extensible Config
+
+- recommand된 eslint 룰을 설정할 수 있음
+
+1. recommended: 자주 사용하는 rule 사용
+2. airbnb: airbnb 스타일 가이드를 따름
+3. standard: 자바스크립트 스탠다드 스타일
+
+### 초기화
+
+init옵션을 통해 쉽게 eslint설정 가능
+
+```bash
+npx eslint --init
+```
+
+## Prettier
+
+- 코드를 예쁘게 만들어줌 EX. 긴 문장, 파라미터가 많은 메소드 등
+
+```bash
+npx prettier app.js --write //파일 재작성
+npx prettier app.js //결과를 터미널에 출력
+```
+
+### ESlint와 통합하기
+
+- eslint-config-prettier 패키지를 통해 프리티어와 충돌하는 ESLint 규칙을 끌 수 있음
+- eslint-config-prettier 플러그인을 사용하면, 프리티어의 모든 rule이 eslint로 들어오므로 eslint만 실행하면 됨
+
+```bash
+npx src/eslint app.js --fix
+```
+
+## 자동화
+
+### husky
+
+- git hook을 쉽게 사용 가능
+- 커밋 시마다 린트 수행이 가능함
+
+### lint-staged
+
+- 변경된 파일만 린트 수행
+
+
