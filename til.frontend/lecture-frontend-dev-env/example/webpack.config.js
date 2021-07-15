@@ -13,7 +13,7 @@ const TerserPlugin = require("terser-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-  mode: "production", //development
+  mode: 'development',
   entry: {
     main: "./src/app.js",
   },
@@ -25,7 +25,7 @@ module.exports = {
     axios: "axios",
   },
   optimization: {
-    minimizer: this.mode === "production" ? [
+    minimizer: process.env.NODE_ENV === "production" ? [
         new OptimizeCSSAssetsPlugin(),
         new TerserPlugin({
           terserOptions: {
@@ -41,8 +41,7 @@ module.exports = {
       {
         test: /\.css$/, // .css 확장자로 끝나는 모든 파일
         use: [
-          process.env.NODE_ENV === "production"
-              ? MiniCssExtractPlugin.loader // 프로덕션 환경
+          process.env.NODE_ENV === "production" ? MiniCssExtractPlugin.loader // 프로덕션 환경
               : "style-loader", // 개발 환경
           "css-loader",
         ], // 웹팩은 뒤에서부터 로더를 적용함.

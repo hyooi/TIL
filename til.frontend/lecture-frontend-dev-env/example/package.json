@@ -4,7 +4,7 @@
   "description": "프론트엔드 개발 환경의 이해 프로젝트입니다.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress --mode=production",
+    "build": "set NODE_ENV=production && webpack --progress",
     "start": "npx webpack serve",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
