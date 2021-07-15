@@ -7,7 +7,7 @@
     "example": "example"
   },
   "scripts": {
-    "build": "webpack --progress"
+    "build": "webpack --progress --mode=production"
   },
   "author": "",
   "license": "ISC",

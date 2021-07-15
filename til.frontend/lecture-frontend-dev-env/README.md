@@ -206,4 +206,21 @@ $ curl localhost:8081/api/keywords
 
 ### hot module replacement
 
-- 웹팩 데브서버는 기본적으로 전체화면을 갱신하는데, 변경한 모듈만 변경하고 싶을 때 사함함
+- 웹팩 데브서버는 기본적으로 전체화면을 갱신하는데, 변경한 모듈만 변경하고 싶을 때 사용함
+- * TODO) webpack5에서 dev server reloading이 제대로 안되는듯. 재확인할 것
+
+
+## 최적화
+### production모드
+- 웹팩은 자동으로 플러그인을 적용하는데,
+development모드에서는 NamedChunksPlugin, NamedModulesPlugin을 적용하고, 
+  자바스크립트 결과물을 최소화하는 7개 플러그인을 적용한다.
+  따라서 빌드 시엔 반드시 production모드로 빌드해야 한다.
+
+
+### optimization
+- optimize-css-assets-webpack-plugin: css의 빈칸을 삭제
+- TerserWebpackPlugin: 자바스크립트 코드 난독화, debug구문 제거. console로그 제거 가능
+- SplitChunksPlugin: js다운로드 속도 개선을 위해 엔트리를 분리하는 경우, 발생할 수 있는 중복코드를 제거함
+- externals: 이미 빌드된 js는 다시 빌드하지 않도록 제외. 단 copyWebpackPlugin으로 js를 카피해야 함. 또한 index.html에도 추가필요
+

@@ -1,10 +1,16 @@
 const path = require("path") //path: 노드에서 제공하는 기본 모듈. 경로 계산 라이브러리
 const webpack = require('webpack');
 const banner = require("./banner.js")
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require("clean-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+
 const apiMocker = require("connect-api-mocker")
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const TerserPlugin = require("terser-webpack-plugin")
+const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
   mode: "production", //development
@@ -14,6 +20,21 @@ module.exports = {
   output: {
     filename: "[name].js", //name: entrypoint의 값
     path: path.resolve("./dist"), //resolve: 절대경로 가져옴
+  },
+  externals: {
+    axios: "axios",
+  },
+  optimization: {
+    minimizer: this.mode === "production" ? [
+        new OptimizeCSSAssetsPlugin(),
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              drop_console: true, // 콘솔 로그를 제거한다
+            },
+          },
+        }),
+    ] : [],
   },
   module: {
     rules: [
@@ -71,6 +92,11 @@ module.exports = {
     ...(process.env.NODE_ENV === "production"
         ? [new MiniCssExtractPlugin({filename: `[name].css`})]
         : []),//production인 경우 css를 별도로 분리하여 속도 개선
+    new CopyPlugin({
+      patterns: [
+        { from: "./node_modules/axios/dist/axios.min.js", to: "./axios.min.js"},
+      ]
+    }),
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"), //정적파일을 제공하는 경로. default: output
