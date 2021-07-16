@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="">
+  <title>JS bin</title>
+</head>
+<body>
+  <ul>
+    <li>javscript</li>
+    <li>java</li>
+    <li>python</li>
+    <li>django</li>
+  </ul>
+
+  <script >
+    var list = document.querySelectorAll("li");
+    for(let i=0; i<list.length; i++) {
+      list[i].addEventListener("click", function () {
+        console.log(i + "번째 리스트입니다.");
+        //i-> 콜백 밖의 변수를 계속 참조하며 share하는 클로저 변수. var에서 let으로 변경하면 정확한 리스트 위치를 가져오게됨
+      });
+    }
+  </script>
+</body>
+</html>
