@@ -32,3 +32,15 @@
 
 ### map
 1. weakmap
+
+### template
+1. template
+
+### function
+1. arrow function
+
+### object
+
+### module
+
+### proxy
