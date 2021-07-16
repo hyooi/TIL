@@ -8,3 +8,6 @@
 2. clousre
 3. const
 4. string
+5. for
+6. array
+7. from

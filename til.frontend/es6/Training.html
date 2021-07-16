@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <ul>
+    <li>apple</li>
+    <li>orange</li>
+    <li>banana</li>
+    <li>strawberry</li>
+  </ul>
+
+  <script >
+    function print() {
+      const listArr = Array.from(document.querySelectorAll("li"));
+      console.log(toString.call(listArr));
+
+      const result = listArr.filter(function (value) {
+        return value.textContent.includes("e");
+      }).map(function (value) {
+        return value.textContent;
+      });
+      console.log(result);
+    }
+
+    print();
+  </script>
+</body>
+</html>
