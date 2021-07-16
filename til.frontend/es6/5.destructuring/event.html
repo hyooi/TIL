@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <div>test</div>
+  <script>
+    document.querySelector("div").addEventListener("click", function ({target, type}) {
+      console.log(type, target.innerHTML);
+    });
+  </script>
+</body>
+</html>
