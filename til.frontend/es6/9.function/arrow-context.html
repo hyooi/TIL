@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <p>mydiv</p>
+
+  <script>
+    const el = document.querySelector("p");
+
+    const myObj = {
+      register() {
+        el.addEventListener("click", evt => {
+          this.printData(evt.target);
+        });
+      },
+
+      printData(el) {
+        console.log("clicked!", el.innerText);
+      }
+    }
+
+    myObj.register();
+    // el.addEventListener("click", function () {
+    //   console.log(this);
+    // });
+  </script>
+</body>
+</html>

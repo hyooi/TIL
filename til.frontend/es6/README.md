@@ -38,6 +38,9 @@
 
 ### function
 1. arrow function
+2. arrow context
+3. function default parameter
+4. rest parameters
 
 ### object
 
