@@ -43,6 +43,10 @@
 4. rest parameters
 
 ### object
+1. class
+2. object assign
+3. setPrototypeOf
+4. prototype chain
 
 ### module
 
