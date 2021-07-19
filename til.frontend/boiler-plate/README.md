@@ -4,3 +4,6 @@
 
 # Express js
 - node js를 이용해 쉽게 개발할 수 있게 해주는 프레임워크
+
+# Mongoose
+mongo db사용을 위한 라이브러리
