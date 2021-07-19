@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const { User } = require('./model/User');
 
 app.use(bodyParser.urlencoded({extended: true})); // application/x-www-form-urlencoded
-app.use(bodyParser.json); //application/json
+app.use(bodyParser.json()); //application/json
 
 const mongoose = require('mongoose')
 mongoose.connect('mongodb+srv://testdb:test@hk.ypq3h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
