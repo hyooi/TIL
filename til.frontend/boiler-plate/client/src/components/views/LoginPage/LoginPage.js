@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {loginUser} from "../../../_actions/user_action";
 
-function LoginPage() {
+function LoginPage(props) {
   const dispatch = useDispatch()
   const [Email, setEmail] = useState("")
   const [Password, setPassword] = useState("")
@@ -17,10 +17,18 @@ function LoginPage() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault(); //화면 리프레시 막아줌
+
+    //redux를 위해 component에서 action함
     dispatch(loginUser({
       email: Email,
       password: Password
-    })) //redux를 위해 component에서 action함
+    })).then(response => {
+      if(response.payload.loginSuccess) {
+        props.history.push('/')
+      } else {
+        alert('error!')
+      }
+    })
   }
 
   return (
