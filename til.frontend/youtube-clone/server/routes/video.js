@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { Video } = require("../models/Video");
 
-const { auth } = require("../middleware/auth");
 const multer = require('multer')
 const ffmpeg = require('fluent-ffmpeg')
 
