@@ -4,6 +4,7 @@ import axios from "axios";
 
 import SideVideo from "./section/SideVideo";
 import Subscribe from "./section/Subscribe";
+import Comment from "./section/Comment";
 
 function VideoDetailPage(props) {
   const variable = {videoId: props.match.params.videoId}
@@ -38,6 +39,8 @@ function VideoDetailPage(props) {
                       title={VideoDetail.writer.name}
                       description={VideoDetail.description}/>
                 </List.Item>
+
+                <Comment />
               </div>
             </Col>
             <Col lg={6} xs={24}>
