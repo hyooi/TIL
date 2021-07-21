@@ -24,9 +24,17 @@ npx create-react-app .
 npm run start
 ```
 
+## React router dom
+- 화면별 라우팅 기능
+
 # npm와 npx
 ## npm
 - 레지스트리 역할 및 빌드 등의 명령어 실행 역할
 
 ## npx
 - 노드 레지스트리에 있는 것을 로컬에 다운로드받지 않고 실행 가능(ex. create-react-app)
+
+# CORS(=Cross Origin Resource Sharing)
+- origin 사이의 리소스 쉐어링 정책
+- 도메인이 같고 포트가 같으면 무관하나, 서로 다른 도메인이거나, 
+  서로 다른 포트인 경우엔 CORS정책에 의해 리소스 공유가 제한받는다.
