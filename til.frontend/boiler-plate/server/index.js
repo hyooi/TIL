@@ -62,7 +62,7 @@ app.post('/api/user/login', (req, res) => {
   })
 })
 
-app.post('/api/user/auth', auth , (req, res) => {
+app.get('/api/user/auth', auth , (req, res) => {
   res.status(200)
   .json({
     _id: req.user._id,
