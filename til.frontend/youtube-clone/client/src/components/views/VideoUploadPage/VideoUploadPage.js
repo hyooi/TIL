@@ -3,6 +3,7 @@ import {Typography, Button, Form, message, Input} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import Dropzone from 'react-dropzone';
 import axios from "axios";
+import {useSelector} from "react-redux";
 
 const {TextArea} = Input;
 const {Title} = Typography;
@@ -19,8 +20,8 @@ const CategoryOptions = [
   {value: 3, label: "Pets & Animals"},
 ]
 
-function VideoUploadPage() {
-
+function VideoUploadPage(props) {
+  const user = useSelector(state => state.user)
   const [VideoTitle, setVideoTitle] = useState("")
   const [Description, setDescription] = useState("")
   const [Private, setPrivate] = useState(0)
@@ -77,13 +78,40 @@ function VideoUploadPage() {
     })
   }
 
+  const onSubmit = (e) => {
+    e.preventDefault(); //원래 클릭할 때 실행되는 것을 방지
+
+    const variables = {
+      writer: user.userData._id,
+      title: VideoTitle,
+      Description: Description,
+      privacy: Private,
+      filePath: FilePath,
+      category: Category,
+      duration: Duration,
+      thumbnail: ThumbnailPath,
+    }
+
+    axios.post('/api/video/uploadVideo', variables)
+    .then(response => {
+      if(response.data.success) {
+        message.success('성공적으로 업로드했습니다.')
+
+        setTimeout(() => {}, 3000)
+        props.history.push('/')
+      } else {
+        alert('비디오 업로드에 실패했습니다.')
+      }
+    })
+  }
+
   return (
       <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <Title level={2}>Upload Video</Title>
         </div>
 
-        <Form onSubmit>
+        <Form onSubmit={onSubmit}>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Dropzone onDrop={onDrop} multiple={false} maxSize={100000000}>
               {({ getRootProps, getInputProps }) => (
@@ -126,7 +154,7 @@ function VideoUploadPage() {
           </select>
 
           <br/><br/>
-          <Button type="primary" size="large" onClick>Submit</Button>
+          <Button type="primary" size="large" onClick={onSubmit}>Submit</Button>
         </Form>
       </div>
   )
