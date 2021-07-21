@@ -85,6 +85,6 @@ app.get('/api/user/logout', auth, (req, res) => {
       }
 })
 
-app.listen(port, () => {
+app.listen(5000, () => {
   console.log(`Example app listening at http://localhost:5000`)
 });
