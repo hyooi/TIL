@@ -43,8 +43,8 @@ function NavBar() {
           onClose={onClose}
           visible={visible}
         >
-          <LeftMenu mode="inline" />
-          <RightMenu mode="inline" />
+          <LeftMenu mode="horizontal" />
+          <RightMenu mode="horizontal" />
         </Drawer>
       </div>
     </nav>

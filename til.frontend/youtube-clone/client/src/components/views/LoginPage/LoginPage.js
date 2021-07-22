@@ -11,7 +11,7 @@ const { Title } = Typography;
 
 function LoginPage(props) {
   const dispatch = useDispatch();
-  const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
+  const rememberMeChecked = !!localStorage.getItem("rememberMe");
 
   const [formErrorMessage, setFormErrorMessage] = useState('')
   const [rememberMe, setRememberMe] = useState(rememberMeChecked)
@@ -20,12 +20,10 @@ function LoginPage(props) {
     setRememberMe(!rememberMe)
   };
 
-  const initialEmail = localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : '';
-
   return (
     <Formik
       initialValues={{
-        email: initialEmail,
+        email: localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : '',
         password: '',
       }}
       validationSchema={Yup.object().shape({
@@ -47,8 +45,8 @@ function LoginPage(props) {
             .then(response => {
               if (response.payload.loginSuccess) {
                 window.localStorage.setItem('userId', response.payload.userId);
-                if (rememberMe === true) {
-                  window.localStorage.setItem('rememberMe', values.id);
+                if (rememberMe) {
+                  window.localStorage.setItem('rememberMe', values.email);
                 } else {
                   localStorage.removeItem('rememberMe');
                 }
@@ -143,7 +141,7 @@ function LoginPage(props) {
       }}
     </Formik>
   );
-};
+}
 
 export default withRouter(LoginPage);
 

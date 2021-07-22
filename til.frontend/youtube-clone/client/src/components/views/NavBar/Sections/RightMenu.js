@@ -19,29 +19,32 @@ function RightMenu(props) {
     });
   };
 
-  if (user.userData && !user.userData.isAuth) {
-    return (
+  return (
       <Menu mode={props.mode}>
-        <Menu.Item key="mail">
-          <a href="/login">Signin</a>
-        </Menu.Item>
-        <Menu.Item key="app">
-          <a href="/register">Signup</a>
-        </Menu.Item>
+        {user.userData && !user.userData.isAuth ?
+            <>
+              <Menu.Item key="mail">
+                <a href="/login">Signin</a>
+              </Menu.Item>
+              <Menu.Item key="app">
+                <a href="/register">Signup</a>
+              </Menu.Item>
+              <Menu.Item key="temp" disabled>
+                Temp
+              </Menu.Item>
+            </>
+            :
+            <>
+              <Menu.Item key="upload">
+                <a href="/video/upload">Video</a>
+              </Menu.Item>
+              <Menu.Item key="logout">
+                <a onClick={logoutHandler}>Logout</a>
+              </Menu.Item>
+            </>
+        }
       </Menu>
-    )
-  } else {
-    return (
-      <Menu mode={props.mode}>
-        <Menu.Item key="upload">
-          <a href="/video/upload">Video</a>
-        </Menu.Item>
-        <Menu.Item key="logout">
-          <a onClick={logoutHandler}>Logout</a>
-        </Menu.Item>
-      </Menu>
-    )
-  }
+  )
 }
 
 export default withRouter(RightMenu);
