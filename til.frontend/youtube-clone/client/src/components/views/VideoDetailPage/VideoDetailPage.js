@@ -7,7 +7,8 @@ import Subscribe from "./section/Subscribe";
 import Comment from "./section/Comment";
 
 function VideoDetailPage(props) {
-  const variable = {videoId: props.match.params.videoId}
+  const videoId = props.match.params.videoId
+  const variable = {videoId: videoId}
   const [VideoDetail, setVideoDetail] = useState([])
 
   useEffect(() => {
@@ -40,7 +41,7 @@ function VideoDetailPage(props) {
                       description={VideoDetail.description}/>
                 </List.Item>
 
-                <Comment />
+                <Comment postId={videoId} />
               </div>
             </Col>
             <Col lg={6} xs={24}>
