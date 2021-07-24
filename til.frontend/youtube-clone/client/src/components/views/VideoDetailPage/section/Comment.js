@@ -24,7 +24,8 @@ export default function Comment(props) {
     axios.post('/api/comment/saveComment', variables)
     .then(response => {
       if(response.data.success) {
-        console.log(response.data)
+        props.refreshFunction(response.data.result)
+        setCommentValue('')
       } else {
         alert('코멘트를 저장하지 못했습니다.')
       }
@@ -39,7 +40,7 @@ export default function Comment(props) {
 
       {props.commentLists && props.commentLists.map((comment, index) => (
           (!comment.responseTo &&
-            <SingleComment comment={comment} postId={props.postId}/>
+            <SingleComment refreshFunction={props.refreshFunction} comment={comment} postId={props.postId}/>
           )
       ))}
 

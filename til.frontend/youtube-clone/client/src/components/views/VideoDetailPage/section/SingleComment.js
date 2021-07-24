@@ -2,7 +2,6 @@ import { Comment, Avatar, Button, Input } from "antd"
 import {useState} from "react";
 import axios from "axios";
 import {useSelector} from "react-redux";
-const { TextArea } = Input
 
 export default function SingleComment(props) {
   const user = useSelector(state => state.user)
@@ -20,24 +19,23 @@ export default function SingleComment(props) {
   const onSubmit = (event) => {
     event.preventDefault()
 
-    // const variables = {
-    //   content: CommentValue,
-    //   writer: user.userData._id,
-    //   postId: props.videoId,
-    //   responseTo: ''
-    // }
+    const variables = {
+      content: CommentValue,
+      writer: user.userData._id,
+      postId: props.videoId,
+      responseTo: props.comment._id
+    }
 
-    // axios.post('/api/comment/saveComment', variables)
-    // .then(response => {
-    //   if(response.data.success) {
-    //     console.log(response.data)
-    //   } else {
-    //     alert('코멘트를 저장하지 못했습니다.')
-    //   }
-    // })
+    axios.post('/api/comment/saveComment', variables)
+    .then(response => {
+      if(response.data.success) {
+        props.refreshFunction(response.data.result)
+        setCommentValue('')
+      } else {
+        alert('코멘트를 저장하지 못했습니다.')
+      }
+    })
   }
-
-  console.log('2', props)
 
   const actions = [
       <span onClick={onClickReplyOpen} key="comment-basic-reply-to">Reply to</span>
