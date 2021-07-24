@@ -46,25 +46,82 @@ export default function LikeDislike(props) {
     })
   }, [])
 
+  const onLike = () => {
+    if(LikesAction === null) {
+      axios.post('/api/like/upLike', variable)
+      .then((response) => {
+        if(response.data.success) {
+          setLikes(Likes+1)
+          setLikeAction('liked')
+
+          if(DisLikesAction !== null) {
+            setDisLikeAction(null)
+            setDisLikes(DisLikes-1)
+          }
+        } else {
+          alert('like에 실패했습니다.')
+        }
+      })
+    } else {
+      axios.post('/api/like/unLike', variable)
+      .then((response) => {
+        if(response.data.success) {
+          setLikes(Likes-1)
+          setLikeAction(null)
+        } else {
+          alert('like에 실패했습니다.')
+        }
+      })
+    }
+  }
+
+  const onDisLike = () => {
+    if(DisLikesAction !== null) {
+      axios.post('/api/like/unDislike', variable)
+      .then(response => {
+        if (response.data.success) {
+          setDisLikes(DisLikes -1)
+          setDisLikeAction(null)
+        } else {
+          alert('dislike을 삭제하지 못했습니다.')
+        }
+      })
+    } else {
+      axios.post('/api/like/upDislike', variable)
+      .then(response => {
+        if (response.data.success) {
+          setDisLikes(DisLikes+1)
+          setDisLikeAction('disliked')
+
+          if(LikesAction !== null) {
+            setLikeAction(null)
+            setLikes(Likes-1)
+          }
+        } else {
+          alert('dislike을 삭제하지 못했습니다.')
+        }
+      })
+    }
+  }
 
   return (
       <div>
         <span key="comment-basic-like">
           <Tooltip title="Like">
             {LikesAction === 'liked'?
-                <LikeOutlined style={{color: '#08c'}} onClick/> :
-                <LikeOutlined style={{color: '#8e8e8e'}} onClick/>
+                <LikeOutlined style={{color: '#08c'}} onClick={onLike}/> :
+                <LikeOutlined style={{color: '#8e8e8e'}} onClick={onLike}/>
             }
           </Tooltip>
         </span>
 
         <span style={{paddingLeft: '8px', cursor: 'auto'}}> {Likes} </span>
-
+        &nbsp;&nbsp;
         <span key="comment-basic-dislike">
           <Tooltip title="DisLike">
             {DisLikesAction === 'disliked'?
-                <DislikeOutlined style={{color: '#cc0000'}} onClick/> :
-                <DislikeOutlined style={{color: '#8e8e8e'}} onClick/>
+                <DislikeOutlined style={{color: '#cc0000'}} onClick={onDisLike}/> :
+                <DislikeOutlined style={{color: '#8e8e8e'}} onClick={onDisLike}/>
             }
           </Tooltip>
         </span>
