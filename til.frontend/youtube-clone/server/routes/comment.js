@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Comment } = require("../models/Comment")
+const { Comment } = require("../models/comment")
 
 router.post("/saveComment", (req, res) => {
   const comment = new Comment(req.body)
@@ -15,6 +15,15 @@ router.post("/saveComment", (req, res) => {
       res.status(200).json({success: true, result})
     })
   })
+})
+
+router.post("/getComments", (req, res) => {
+  Comment.find({"postId": req.body.videoId})
+  .populate('writer')
+  .exec((err, comment) => {
+    if(err) return res.status(400).send(err)
+    res.status(200).json({success:true, comment})
+    })
 })
 
 module.exports = router;

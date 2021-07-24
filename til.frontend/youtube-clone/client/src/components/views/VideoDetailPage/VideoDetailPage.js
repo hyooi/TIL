@@ -9,7 +9,9 @@ import Comment from "./section/Comment";
 function VideoDetailPage(props) {
   const videoId = props.match.params.videoId
   const variable = {videoId: videoId}
+
   const [VideoDetail, setVideoDetail] = useState([])
+  const [Comments, setComments] = useState([])
 
   useEffect(() => {
     axios.post('/api/video/getVideoDetail', variable)
@@ -18,6 +20,15 @@ function VideoDetailPage(props) {
         setVideoDetail(response.data.videoDetail)
       } else {
         alert('비디오 정보를 가져오는데 실패했습니다.')
+      }
+    })
+
+    axios.post('/api/comment/getComments', variable)
+    .then(response => {
+      if(response.data.success) {
+        setComments(response.data.comment)
+      } else {
+        alert('코멘트 정보를 가져오는데 실패했습니다.')
       }
     })
   }, [])
@@ -41,7 +52,7 @@ function VideoDetailPage(props) {
                       description={VideoDetail.description}/>
                 </List.Item>
 
-                <Comment postId={videoId} />
+                <Comment commentLists={Comments} postId={videoId} />
               </div>
             </Col>
             <Col lg={6} xs={24}>

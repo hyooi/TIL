@@ -2,6 +2,7 @@ import {useState} from "react";
 import axios from "axios";
 
 import { useSelector} from "react-redux";
+import SingleComment from "./SingleComment";
 
 export default function Comment(props) {
   const user = useSelector(state => state.user)
@@ -17,7 +18,7 @@ export default function Comment(props) {
     const variables = {
       content: commentValue,
       writer: user.userData._id,
-      postId: props.videoId
+      postId: props.postId
     }
 
     axios.post('/api/comment/saveComment', variables)
@@ -35,6 +36,12 @@ export default function Comment(props) {
       <br/>
       <p>Replies</p>
       <hr/>
+
+      {props.commentLists && props.commentLists.map((comment, index) => (
+          (!comment.responseTo &&
+            <SingleComment comment={comment} postId={props.postId}/>
+          )
+      ))}
 
       <form style={{ display: 'flex'}} onSubmit={onSubmit}>
         <textarea style={{ width:'100%', borderRadius:'5px'}}
