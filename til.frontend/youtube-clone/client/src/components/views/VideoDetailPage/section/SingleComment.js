@@ -1,4 +1,4 @@
-import { Comment, Avatar, Button, Input } from "antd"
+import { Comment, Avatar} from "antd"
 import {useState} from "react";
 import axios from "axios";
 import {useSelector} from "react-redux";
@@ -22,7 +22,7 @@ export default function SingleComment(props) {
     const variables = {
       content: CommentValue,
       writer: user.userData._id,
-      postId: props.videoId,
+      postId: props.postId,
       responseTo: props.comment._id
     }
 
@@ -31,6 +31,7 @@ export default function SingleComment(props) {
       if(response.data.success) {
         props.refreshFunction(response.data.result)
         setCommentValue('')
+        setOpenReply(false)
       } else {
         alert('코멘트를 저장하지 못했습니다.')
       }

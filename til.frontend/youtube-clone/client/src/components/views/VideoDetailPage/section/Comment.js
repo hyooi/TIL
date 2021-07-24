@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { useSelector} from "react-redux";
 import SingleComment from "./SingleComment";
+import ReplyComment from "./ReplyComment";
 
 export default function Comment(props) {
   const user = useSelector(state => state.user)
@@ -40,7 +41,10 @@ export default function Comment(props) {
 
       {props.commentLists && props.commentLists.map((comment, index) => (
           (!comment.responseTo &&
-            <SingleComment refreshFunction={props.refreshFunction} comment={comment} postId={props.postId}/>
+              <>
+                <SingleComment refreshFunction={props.refreshFunction} comment={comment} postId={props.postId} />
+                <ReplyComment refreshFunction={props.refreshFunction} parentCommentId={comment._id} postId={props.postId} commentLists={props.commentLists}/>
+              </>
           )
       ))}
 
