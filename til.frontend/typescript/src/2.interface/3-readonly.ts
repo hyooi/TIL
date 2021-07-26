@@ -1,4 +1,7 @@
-//오브젝트 생성 시에만 수정 가능
+/**
+ * readonly
+ * - 오브젝트 생성 시에만 수정 가능
+ */
 interface Point {
   readonly x: number;
   readonly y: number;

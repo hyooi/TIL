@@ -1,6 +1,9 @@
-// optional properties: 선언 시 이름 끝에 ?를 붙임
-// SquareConfig interface 중 일부만 채워 사용 가능
-// 그러나 property명을 잘못 기술한 경우 컴파일 에러 발생시킴
+/**
+ * optional properties
+ * - 선언 시 이름 끝에 ?를 붙임
+ * - interface 중 일부만 채워 사용 가능
+ * - 그러나 property명을 잘못 기술한 경우 컴파일 에러 발생시킴
+ */
 interface SquareConfig {
   color?: string;
   width?: number;

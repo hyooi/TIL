@@ -1,3 +1,6 @@
+/**
+ * interface
+ */
 //size가 없지만, 타입스크립트는 최소한의 필요한 프로퍼티가 있는지와 타입이 맞는지만 검사함. 순서도 체크X
 function printLabel(labeledObj: { label: string }) {
   console.log(labeledObj.label);

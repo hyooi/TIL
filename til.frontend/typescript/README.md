@@ -32,6 +32,10 @@ tsc greeter.ts
   - type assertions
 
 2. 인터페이스
+  - interface
+  - optional property
+  - readonly
+
 3. 함수
 4. 리터럴 타입
 5. 유니언과 교차타입
