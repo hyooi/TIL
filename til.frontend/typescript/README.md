@@ -37,6 +37,8 @@ tsc greeter.ts
   - readonly
   - excess property checks
   - function type
+  - indexable type
+  - implement an interface
 
 3. 함수
 4. 리터럴 타입
