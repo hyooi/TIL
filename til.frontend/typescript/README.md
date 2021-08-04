@@ -39,6 +39,8 @@ tsc greeter.ts
   - function type
   - indexable type
   - implement an interface
+  - static and instance of classes
+  - extending interface
 
 3. 함수
 4. 리터럴 타입
