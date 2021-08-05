@@ -1,5 +1,5 @@
-/*
-초과 프로퍼티 검사(Excess property checks)
+/**
+ * 초과 프로퍼티 검사(Excess property checks)
  */
 interface SquareConfig {
   color?: string;

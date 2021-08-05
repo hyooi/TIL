@@ -1,5 +1,5 @@
-/*
-함수타입(function type)
+/**
+ * 함수타입(function type)
  */
 
 interface SearchFunc {

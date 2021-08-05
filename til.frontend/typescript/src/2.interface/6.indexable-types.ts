@@ -1,6 +1,6 @@
-/*
-인덱서블 타입
-- 문자열 및 숫자만 인덱서를 지원
+/**
+ * 인덱서블 타입
+ * - 문자열 및 숫자만 인덱서를 지원
  */
 interface StringArray {
   [index: number]: string; //number로 인덱싱하며, string을 반환할 것

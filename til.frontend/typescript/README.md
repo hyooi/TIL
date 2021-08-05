@@ -41,6 +41,8 @@ tsc greeter.ts
   - implement an interface
   - static and instance of classes
   - extending interface
+  - hybrid type
+  - interface extending classes
 
 3. 함수
 4. 리터럴 타입
