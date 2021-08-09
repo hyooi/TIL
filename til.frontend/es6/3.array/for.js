@@ -29,3 +29,6 @@ console.log("\n\n5. for-of:")
 for(let value of "test!") {
   console.log(value);
 }
+
+console.log("\n\n6.map:")
+console.log(data.map(n => n))

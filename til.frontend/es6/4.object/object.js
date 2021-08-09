@@ -24,3 +24,14 @@ function getObj() {
   return {getName, setName, name};
 }
 console.log(getObj());
+
+const dog = {
+  name: '강아지',
+  sound: '멍멍!',
+  say: function() {
+    //애로우 펑션으로 정의 시 this작동x. function함수여야 this가 자신이 속한 객체를 가리키므로
+    console.log(this.sound);
+  }
+}
+
+dog.say();
