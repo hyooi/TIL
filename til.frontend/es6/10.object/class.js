@@ -22,3 +22,8 @@ class Health2 {
 }
 new Health2("crong").showHealth();
 
+class Health3 extends Health2 {
+  constructor(name, lastTime) {
+    super(name, lastTime);
+  }
+}
