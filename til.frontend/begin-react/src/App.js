@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import Hello from "./Hello";
+import Wrapper from "./Wrapper";
 
 function App() {
   const name = 'react';
@@ -12,12 +12,16 @@ function App() {
   }
   return (
     <div className="App">
-      {/*주석!*/}
-      <Hello
-        //여기선 이렇게 주석쓰기 가능
-      />
-      <div style={style}>{name}</div>
-      <div className="gray-box"/>
+      <Wrapper>
+        {/*주석!*/}
+        {/*isSpecial만 쓰면 true로 간주*/}
+        <Hello name="react" color="red" isSpecial
+          //여기선 이렇게 주석쓰기 가능
+        />
+        <Hello color="pink"/>
+        <div style={style}>{name}</div>
+        <div className="gray-box"/>
+      </Wrapper>
     </div>
   );
 }

@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Counter from "./Counter";
+import InputSample from "./InputSample";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <>
+      <InputSample />
+      <Counter />
+      <App />
+    </>
   </React.StrictMode>,
   document.getElementById('root')
 );
