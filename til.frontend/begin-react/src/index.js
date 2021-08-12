@@ -5,10 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Counter from "./Counter";
 import InputSample from "./InputSample";
+import UserList from "./UserList";
 
 ReactDOM.render(
   <React.StrictMode>
     <>
+      <UserList/>
       <InputSample />
       <Counter />
       <App />
