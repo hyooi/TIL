@@ -2,20 +2,16 @@ import {useEffect} from "react";
 
 const User = ({user, onRemove, onToggle}) => {
   useEffect(() => {
-    console.log('user변경!')
     console.log('user!', user)
-    return () => {
-      console.log('user변경전!')
-       console.log('user!', user)
-    }
-  }, [user]) //deps는 의존값. 비어있으면 컴포넌트가 처음 렌더링될 때만 호출됨.
+  }, [user]) //deps는 의존값. []면 컴포넌트가 처음 렌더링될 때만 호출됨. 비어있으면 리렌더링 시마다 호출
 
   return (
       <div>
         <b style={{
           cursor: 'pointer',
           color: user.active? 'green' : 'black'
-        }} onClick={() => onToggle(user.id)}>{user.username}</b> <span>({user.email})</span>
+        }} onClick={() => onToggle(user.id)}>{user.username}</b>
+        <span>({user.email})</span>
         <button onClick={() => onRemove(user.id)}>삭제</button>
       </div>
   )

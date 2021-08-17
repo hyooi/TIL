@@ -72,11 +72,17 @@ function App() {
     )
   }
 
+  const count = (users) => {
+    console.log("활성 사용자 수를 세는 중")
+    return users.filter(user => user.active).length;
+  }
+
   return (
     <div className="App">
       <CreateUser username={username} email={email} onCreate={onCreate} onChange={onChange}/>
       <UserList users={users} onRemove={id => setUsers(users.filter(user => user.id !== id))}
         onToggle={onToggle}/>
+      <div>활성 사용자 수 : {count}</div>
       <Wrapper>
         {/*주석!*/}
         {/*isSpecial만 쓰면 true로 간주*/}
