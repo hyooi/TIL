@@ -2,7 +2,7 @@ import './App.css';
 import Hello from "./Hello";
 import Wrapper from "./Wrapper";
 import UserList from "./UserList";
-import {useRef, useState} from "react";
+import {useMemo, useRef, useState} from "react";
 import CreateUser from "./CreateUser";
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
       id: 1,
       username: 'velopert',
       email: 'public.velopert@gmail.com',
-      active: true
+      active: false
     },
     {
       id: 2,
@@ -70,12 +70,23 @@ function App() {
           active: !user.active
         } : user)
     )
+
+    const user = users.filter(user => user.id === id)[0]
+    let username = ''
+    let email = ''
+
+    if(!user.active) {
+      username = user.username;
+      email = user.email;
+    }
+
+    setInputs({username, email})
   }
 
-  const count = (users) => {
-    console.log("활성 사용자 수를 세는 중")
+  //deps의 내용이 바뀌면 함수를 호출하고, 그렇지 않으면 이전 값 재사용
+  const count = useMemo(() => {
     return users.filter(user => user.active).length;
-  }
+  }, [users])
 
   return (
     <div className="App">
