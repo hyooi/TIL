@@ -2,7 +2,7 @@ import './App.css';
 import Hello from "./Hello";
 import Wrapper from "./Wrapper";
 import UserList from "./UserList";
-import {useMemo, useRef, useState} from "react";
+import {useCallback, useMemo, useRef, useState} from "react";
 import CreateUser from "./CreateUser";
 
 function App() {
@@ -16,31 +16,18 @@ function App() {
 
 //state는 변경한 값으로 랜더링한 후 업데이트된 값을 사용하는 반면, useRef는 설정 후 바로 조회가능
   const nextId = useRef(4);
-  const onCreate = () => {
-    setUsers([...users, { //스프레드 연산자를 사용하거나, concat으로 복제가능
-      id: nextId.current,
-      username,
-      email
-    }])
-    setInputs({
-      username: '',
-      email: ''
-    })
-    nextId.current += 1;
-  }
-
   const [inputs, setInputs] = useState({
     username: '',
     email: ''
   })
   const {username, email} = inputs;
-  const onChange = e => {
+  const onChange = useCallback(e => {
     const {name, value} = e.target;
     setInputs({
       ...inputs,
       [name]: value
     })
-  }
+  }, []);
 
   const [users, setUsers] = useState([
     {
@@ -63,7 +50,21 @@ function App() {
     }
   ])
 
-  const onToggle = id => {
+  //컴포넌트 리렌더링 시마다 함수가 새로 만들어짐
+  const onCreate = useCallback(() => {
+    setUsers([...users, { //스프레드 연산자를 사용하거나, concat으로 복제가능
+      id: nextId.current,
+      username,
+      email
+    }])
+    setInputs({
+      username: '',
+      email: ''
+    })
+    nextId.current += 1;
+  }, [username, email])
+
+  const onToggle = useCallback(id => {
     setUsers(
         users.map(user => user.id === id? {
           ...user,
@@ -81,8 +82,7 @@ function App() {
     }
 
     setInputs({username, email})
-  }
-
+  }, []) //deps에 사용하는 props, 상태를 포함해야 가장 최신 값을 참조함함
   //deps의 내용이 바뀌면 함수를 호출하고, 그렇지 않으면 이전 값 재사용
   const count = useMemo(() => {
     return users.filter(user => user.active).length;

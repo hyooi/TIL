@@ -1,3 +1,5 @@
+import React from "react";
+
 const CreateUser = ({ username, email, onChange, onCreate }) => {
   return (
       <div>
@@ -8,4 +10,4 @@ const CreateUser = ({ username, email, onChange, onCreate }) => {
   )
 }
 
-export default CreateUser
+export default React.memo(CreateUser) //memo 시 리렌더링이 필요할 때만 렌더링하도록 설정 가능
