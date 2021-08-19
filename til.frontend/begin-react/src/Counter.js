@@ -1,16 +1,29 @@
-import {useState} from "react";
+import {useReducer, useState} from "react";
 
+//reducer-> useState 외의 상태관리하는 방법. 컴포넌트의 상태 업데이트 로직을 컴포넌트에서 분리시킬 수 있음
+//state: 컴포넌트의 상태
+//dispatch: 액션을 발생시키는 함수
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+}
 const Counter = () => {
-  const [number, setNumber] = useState(0)
+  const [number, dispatch] = useReducer(reducer, 0)
 
   const onIncrease = () => {
+    dispatch({type: 'INCREMENT'})
     // setNumber(number+1)
-    setNumber(prevState => prevState + 1);
   }
 
   const onDecrease = () => {
+    dispatch({type: 'decrement'})
     // setNumber(number-1)
-    setNumber(prevState => prevState -1); //기존값을 변경하는 식으로도 업데이트 가능
   }
 
   return (
