@@ -22,7 +22,7 @@ const Counter = () => {
   }
 
   const onDecrease = () => {
-    dispatch({type: 'decrement'})
+    dispatch({type: 'DECREMENT'})
     // setNumber(number-1)
   }
 
