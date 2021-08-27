@@ -1,0 +1,60 @@
+lang: ko
+title: 데일리블로그
+email: hyoin01@gmail.com
+description: kello
+url: https://hyooi.github.io
+author:
+  name: hyooi
+  picture: /assets/bg.jpg
+github_username: hyooi
+logo: favicon.ico
+search: true
+search_full_content: false
+search_provider: lunr #algolia
+#algolia:
+#  application_id: # YOUR_APPLICATION_ID
+#  index_name: # YOUR_INDEX_NAME
+#  search_only_api_key: # YOUR_SEARCH_ONLY_API_KEY
+#  powered_by: # true (default), false
+
+# Build settings
+markdown: kramdown
+theme: jekyll-theme-basically-basic
+plugins: # previsously gems
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+feed:
+  path: atom.xml
+
+# Pagination - https://jekyllrb.com/docs/pagination/
+paginate: 3
+paginate_path: /page:num/
+
+# Exclude from processing.
+exclude:
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - Gemfile
+  - Gemfile.lock
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Front Matter Defaults
+defaults:
+  # _posts
+  - scope:
+      path: "_posts"
+      type: posts
+    values:
+      layout: post
+      read_time: true
+
+disqus:
+  shortname: https-hyooi-github-io
+
+google_analytics : G-7VLEDQQ4FZ
