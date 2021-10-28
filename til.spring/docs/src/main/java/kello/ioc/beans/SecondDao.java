@@ -1,5 +1,5 @@
 package kello.ioc.beans;
 
-public class BDao {
+public class SecondDao {
 
 }
