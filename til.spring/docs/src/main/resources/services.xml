@@ -9,4 +9,6 @@
     <property name="secondDao" ref="secondDao"/>
   </bean>
 
+  <alias name="firstService" alias="thirdService"/>
+
 </beans>
