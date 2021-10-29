@@ -23,11 +23,6 @@ public class ApplicationContextTest {
     assertThat(service.numbers())
         .hasSize(5)
         .containsExactly(1, 2, 3, 4, 5);
-
-    service = context.getBean("thirdService", FirstService.class);
-    assertThat(service.numbers())
-        .hasSize(5)
-        .containsExactly(1, 2, 3, 4, 5);
   }
 
   @Test
@@ -38,6 +33,19 @@ public class ApplicationContextTest {
         .contains("firstDao", "secondDao", "firstService");
 
     var service = context.getBean("firstService", FirstService.class);
+    assertThat(service.numbers())
+        .hasSize(5)
+        .containsExactly(1, 2, 3, 4, 5);
+  }
+
+  @Test
+  @DisplayName("어플리케이션 컨텍스트 bean alias 테스트")
+  void applicationContext_alias() {
+    var context = new ClassPathXmlApplicationContext("services.xml");
+    assertThat(context.getBeanDefinitionNames())
+        .contains("firstDao", "secondDao", "firstService");
+
+    var service = context.getBean("thirdService", FirstService.class);
     assertThat(service.numbers())
         .hasSize(5)
         .containsExactly(1, 2, 3, 4, 5);
