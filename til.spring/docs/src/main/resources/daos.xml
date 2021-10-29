@@ -3,6 +3,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="firstDao" class="kello.ioc.beans.FirstDao" factory-method="Instance"/>
-  <bean id="secondDao" class="kello.ioc.beans.SecondDao"/>
+  <bean id="serviceLocator" class="kello.ioc.beans.ServiceLocator" />
+  <bean id="factoryMethodDao" class="kello.ioc.beans.FactoryMethodDao" factory-method="instance" />
+  <bean id="instanceFactoryMethodDao" factory-bean="serviceLocator" factory-method="instanceFactoryMethodDao"/>
 </beans>

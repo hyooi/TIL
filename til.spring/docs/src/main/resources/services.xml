@@ -4,11 +4,11 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <import resource="daos.xml"/>
-  <bean id="firstService" class="kello.ioc.beans.FirstService">
-    <constructor-arg ref="firstDao"/>
-    <property name="secondDao" ref="secondDao"/>
+  <bean id="constructorService" class="kello.ioc.beans.ConstructorService">
+    <constructor-arg ref="factoryMethodDao"/>
+    <property name="instanceFactoryMethodDao" ref="instanceFactoryMethodDao"/>
   </bean>
 
-  <alias name="firstService" alias="thirdService"/>
+  <alias name="constructorService" alias="aliasService"/>
 
 </beans>
