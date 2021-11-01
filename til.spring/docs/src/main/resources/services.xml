@@ -5,7 +5,8 @@
 
   <import resource="daos.xml"/>
   <bean id="constructorService" class="kello.ioc.beans.ConstructorService">
-    <constructor-arg ref="factoryMethodDao"/>
+    <constructor-arg index="0" name="factoryMethodDao" ref="factoryMethodDao"/>
+    <constructor-arg index="1" name="count" type="int" value="1000"/>
     <property name="instanceFactoryMethodDao" ref="instanceFactoryMethodDao"/>
   </bean>
 

@@ -2,9 +2,8 @@ package kello.ioc;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import kello.ioc.beans.FactoryMethodDao;
+import kello.ioc.beans.BeanConfig;
 import kello.ioc.beans.ConstructorService;
-import kello.ioc.beans.InstanceFactoryMethodDao;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -23,12 +22,14 @@ public class ApplicationContextTest {
     assertThat(service.numbers())
         .hasSize(5)
         .containsExactly(1, 2, 3, 4, 5);
+    assertThat(service.getCount()).isEqualTo(1000);
   }
 
   @Test
   @DisplayName("어노테이션을 통한 어플리케이션 컨텍스트 생성 테스트")
   void applicationContext_annotation() {
-    var context = new AnnotationConfigApplicationContext(FactoryMethodDao.class, InstanceFactoryMethodDao.class, ConstructorService.class);
+//    var context = new AnnotationConfigApplicationContext(FactoryMethodDao.class, InstanceFactoryMethodDao.class, ConstructorService.class);
+    var context = new AnnotationConfigApplicationContext(BeanConfig.class);
     assertThat(context.getBeanDefinitionNames())
         .contains("factoryMethodDao", "instanceFactoryMethodDao", "constructorService");
 
@@ -36,6 +37,7 @@ public class ApplicationContextTest {
     assertThat(service.numbers())
         .hasSize(5)
         .containsExactly(1, 2, 3, 4, 5);
+    assertThat(service.getCount()).isEqualTo(1000);
   }
 
   @Test
@@ -49,5 +51,6 @@ public class ApplicationContextTest {
     assertThat(service.numbers())
         .hasSize(5)
         .containsExactly(1, 2, 3, 4, 5);
+    assertThat(service.getCount()).isEqualTo(1000);
   }
 }

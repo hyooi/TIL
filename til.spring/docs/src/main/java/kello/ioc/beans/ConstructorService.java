@@ -5,10 +5,13 @@ import java.util.List;
 public class ConstructorService {
 
   private final FactoryMethodDao factoryMethodDao;
+  private final int count;
   private InstanceFactoryMethodDao instanceFactoryMethodDao;
 
-  public ConstructorService(FactoryMethodDao factoryMethodDao) {
+  // 생성자 기반 종속성 주입
+  public ConstructorService(FactoryMethodDao factoryMethodDao, int count) {
     this.factoryMethodDao = factoryMethodDao;
+    this.count = count;
   }
 
   public void setInstanceFactoryMethodDao(InstanceFactoryMethodDao instanceFactoryMethodDao) {
@@ -17,5 +20,9 @@ public class ConstructorService {
 
   public List<Integer> numbers() {
     return factoryMethodDao.numbers();
+  }
+
+  public int getCount() {
+    return count;
   }
 }
