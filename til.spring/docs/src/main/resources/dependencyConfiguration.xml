@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="propertyBean" class="kello.ioc.beans.dependency.PropertyBean">
+    <constructor-arg>
+      <props>
+        <prop key="jdbc.driver.className">com.mysql.jdbc.Driver</prop>
+        <prop key="jdbc.url">jdbc:mysql://localhost:3306/mydb</prop>
+      </props>
+    </constructor-arg>
+  </bean>
+
+  <bean id="outerBean" class="kello.ioc.beans.dependency.OuterBean">
+    <property name="propertyBean">
+      <bean class="kello.ioc.beans.dependency.PropertyBean">
+        <constructor-arg>
+          <props>
+            <prop key="key01">value01</prop>
+          </props>
+        </constructor-arg>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="collectionBean" class="kello.ioc.beans.dependency.CollectionBean">
+    <property name="list">
+      <list value-type="java.lang.String">
+        <value>list01</value>
+      </list>
+    </property>
+
+    <property name="map">
+      <map key-type="java.lang.String" value-type="java.lang.String">
+        <entry key="key01" value="map01"/>
+      </map>
+    </property>
+
+    <property name="set">
+      <set value-type="java.lang.String">
+        <value>set01</value>
+      </set>
+    </property>
+  </bean>
+
+  <bean id="childCollection" parent="collectionBean">
+    <property name="list">
+      <list value-type="java.lang.String" merge="true">
+        <value>list02</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="nullBean" class="kello.ioc.beans.dependency.NullBean">
+    <property name="example01" value=""/>
+    <property name="example02">
+      <null/>
+    </property>
+  </bean>
+
+  <bean id="compoundPropertyBean" class="kello.ioc.beans.dependency.CompoundPropertyBean">
+    <property name="fred.bob" value="123"/>
+  </bean>
+</beans>
