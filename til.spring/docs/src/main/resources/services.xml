@@ -12,4 +12,5 @@
 
   <alias name="constructorService" alias="aliasService"/>
 
+  <bean id="applicationContextAwareBean" class="kello.ioc.beans.ApplicationContextAwareBean"/>
 </beans>

@@ -3,11 +3,13 @@ package kello.ioc.beans.dependency;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class CollectionBean {
   private List<String> list;
   private Map<String, String> map;
   private Set<String> set;
+
 
   public void setList(List<String> list) {
     this.list = list;
