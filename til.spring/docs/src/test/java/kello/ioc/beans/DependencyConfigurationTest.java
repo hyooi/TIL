@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
 import kello.ioc.beans.dependency.CollectionBean;
+import kello.ioc.beans.dependency.MethodReplacementBean;
 import kello.ioc.beans.dependency.NullBean;
 import kello.ioc.beans.dependency.OuterBean;
 import kello.ioc.beans.dependency.PropertyBean;
@@ -76,5 +77,15 @@ public class DependencyConfigurationTest {
 
     assertThat(nullBean.getExample01()).isEqualTo("");
     assertThat(nullBean.getExample02()).isNull();
+  }
+
+  @Test
+  @DisplayName("Method replacement-실제 메소드 대신 다른 메소드로 교체함")
+  void replace_method() {
+    var context = new ClassPathXmlApplicationContext("dependencyConfiguration.xml");
+    var bean = context.getBean("methodReplacementBean", MethodReplacementBean.class);
+
+    assertThat(bean.originalMethod("test"))
+        .isEqualTo("[MethodReplacementBean2]test");
   }
 }

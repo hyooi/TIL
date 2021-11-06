@@ -59,7 +59,11 @@
     </property>
   </bean>
 
-  <bean id="compoundPropertyBean" class="kello.ioc.beans.dependency.CompoundPropertyBean">
-    <property name="fred.bob" value="123"/>
+  <bean id="methodReplacementBean" class="kello.ioc.beans.dependency.MethodReplacementBean">
+    <replaced-method name="originalMethod" replacer="methodReplacementBean2">
+      <arg-type>String</arg-type>
+    </replaced-method>
   </bean>
+
+  <bean id="methodReplacementBean2" class="kello.ioc.beans.dependency.MethodReplacementBean2"/>
 </beans>
