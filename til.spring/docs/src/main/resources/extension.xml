@@ -3,7 +3,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="testBean" class="kello.ioc.extension.TestBean">
+  <bean id="testBean" class="${testbean.class}">
     <property name="driverClassName" value="${jdbc.driverClassName}"/>
     <property name="url" value="${jdbc.url}"/>
     <property name="username" value="${jdbc.username}"/>
@@ -12,8 +12,18 @@
 
   <bean class="kello.ioc.extension.BeanPostProcessorImpl"/>
 
+  <!-- PropertySourcesPlaceholderConfigurer는 BeanFactoryPostProcessor를 구현함.
+  beanFactory를 직접 커스텀
+  값이 없으면 에러발생
+   -->
   <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
     <property name="locations" value="classpath:jdbc.properties"/>
+    <property name="properties" value="testbean.class=kello.ioc.extension.TestBean"/>
+  </bean>
+
+  <bean class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
+    <property name="locations" value="classpath:jdbc2.properties"/>
+    <property name="properties" value="testBean.driverClassName=com.mysql.jdbc.Driver"/>
   </bean>
 
 </beans>
