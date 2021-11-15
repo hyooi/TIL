@@ -1,8 +1,10 @@
 package kello.ioc.lifecycle;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.LifecycleProcessor;
 
 // InitializingBean, DisposableBean은 spring과 연결되므로
 // @postConstruct, @PreDestroy나 pojo init/destroy method를 지정하는것이 좋음
@@ -16,60 +18,53 @@ import org.springframework.context.LifecycleProcessor;
 6. DisposableBean의 destroy()
 7. 사용자 정의 destroy()메소드
  */
-public class LifeCycle implements InitializingBean, DisposableBean, LifecycleProcessor {
+public class LifeCycle implements InitializingBean, DisposableBean, BeanNameAware {
+
+  private String name;
+
+  @Override
+  public void setBeanName(String name) {
+    this.name = name;
+  }
 
   @Override
   public void afterPropertiesSet() throws Exception {
-    System.out.println("[InitializingBean] afterPropertiesSet");
+    System.out.println("["+name+"] InitializingBean: afterPropertiesSet");
+  }
+
+  @PostConstruct
+  public void postConstruct() {
+    System.out.println("["+name+"] PostConstruct");
   }
 
   private void initialize() {
-    System.out.println("[default-init-method] initialize");
+    System.out.println("["+name+"] default-init-method: initialize");
   }
 
   private void init() {
-    System.out.println("[init-method] init");
+    System.out.println("["+name+"] init-method: init");
   }
 
   public LifeCycle() {
-    System.out.println("[Constructor] LifeCycle");
+    System.out.println("["+name+"] constructor");
   }
 
   @Override
   public void destroy() throws Exception {
-    System.out.println("[DisposableBean] destroy");
+    System.out.println("["+name+"] DisposableBean: destroy");
+  }
+
+  @PreDestroy
+  public void preDestroy() {
+    System.out.println("["+name+"] PreDestroy");
   }
 
   private void cleanup() {
-    System.out.println("[destroy-method] cleanup");
+    System.out.println("["+name+"] destroy-method: cleanup");
   }
 
   private void exit() {
-    System.out.println("[default-destroy-method] exit");
+    System.out.println("["+name+"] default-destroy-method: exit");
   }
 
-  @Override
-  public void onRefresh() {
-    System.out.println("[LifeCycleProcessor] onRefresh");
-  }
-
-  @Override
-  public void onClose() {
-    System.out.println("[LifeCycleProcessor] onClose");
-  }
-
-  @Override
-  public void start() {
-    System.out.println("[LifeCycle] start");
-  }
-
-  @Override
-  public void stop() {
-    System.out.println("[LifeCycle] stop");
-  }
-
-  @Override
-  public boolean isRunning() {
-    return false;
-  }
 }

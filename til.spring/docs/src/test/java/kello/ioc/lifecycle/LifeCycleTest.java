@@ -6,9 +6,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 class LifeCycleTest {
 
   @Test
-  void test() {
+  void lifeCycle() {
     var context = new ClassPathXmlApplicationContext("lifecycle.xml");;
     var bean = context.getBean("lifeCycle", LifeCycle.class);
+
+    context.close();
+  }
+
+  @Test
+  void lifeCycleWithDefaultMethod() {
+    var context = new ClassPathXmlApplicationContext("lifecycle.xml");;
+    var bean = context.getBean("lifeCycleWithDefaultMethod", LifeCycle.class);
 
     context.close();
   }
