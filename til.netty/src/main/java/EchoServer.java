@@ -17,7 +17,7 @@ public class EchoServer {
             b.group(bossGroup, workerGroup)
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<SocketChannel>() {
-                    @Override protected void initChannel(SocketChannel ch) throws Exception {
+                    @Override protected void initChannel(SocketChannel ch) {
                         ChannelPipeline p = ch.pipeline();
                         p.addLast(new EchoServerHandler());
                     }

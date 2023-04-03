@@ -9,6 +9,13 @@ repositories {
     mavenCentral()
 }
 
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
 dependencies {
     implementation 'io.netty:netty-all:4.1.90.Final'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'

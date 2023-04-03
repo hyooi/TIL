@@ -9,7 +9,7 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         String readMessage = ((ByteBuf) msg).toString(Charset.defaultCharset());
-        System.out.println("수신한 문자열 [" + readMessage + "]");
+        System.out.println("Received message [" + readMessage + "]");
         ctx.write(msg); //클라이언트로부터 입력받은 데이터를 그대로 클라이언트에 돌려줌
     }
 
