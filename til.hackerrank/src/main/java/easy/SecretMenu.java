@@ -8,40 +8,11 @@ public class SecretMenu {
     Scanner scan = new Scanner(System.in);
     String[] mnk = scan.nextLine().split(" ");
 
-    boolean result = false;
-    String[] menu = scan.nextLine().split(" ");
-    String[] input = scan.nextLine().split(" ");
+    String menu = scan.nextLine();
+    String input = scan.nextLine();
 
-    boolean isContinue = false;
-    int order = 0;
-    for (int j = 0; j < input.length; j++) {
-      if (isContinue) {
-        if (menu[order].equals(input[j])) {
-          order++;
-
-          if (order == menu.length) {
-            result = true;
-            break;
-          }
-        } else if(menu[order-1].equals(input[j])) {
-        } else {
-          isContinue = false;
-          order = 0;
-        }
-      } else {
-        if (menu[order].equals(input[j])) {
-          isContinue = true;
-          order++;
-
-          if (order == menu.length) {
-            result = true;
-            break;
-          }
-        }
-      }
-    }
-
-    System.out.println(result ? "secret" : "normal");
+    boolean result = input.contains(menu);
+    System.out.println(result? "secret" : "normal");
 
     scan.close();
   }
