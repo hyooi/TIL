@@ -20,8 +20,7 @@ public class SafeCracker {
       lists.add(new Gold(Integer.parseInt(temp[0]), Integer.parseInt(temp[1])));
     }
 
-    Collections.sort(lists, (g1, g2) -> Integer.compare(g2.getPrice(), g1.getPrice()));
-
+    lists.sort((g1, g2) -> Integer.compare(g2.getPrice(), g1.getPrice()));
     //   System.out.println(lists);
 
     int curPrice = 0;
