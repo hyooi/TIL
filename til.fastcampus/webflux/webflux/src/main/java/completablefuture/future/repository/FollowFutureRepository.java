@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 public class FollowFutureRepository {
@@ -14,9 +15,18 @@ public class FollowFutureRepository {
     }
 
     @SneakyThrows
-    public Long countByUserId(String userId) {
+    public CompletableFuture<Long> countByUserId(String userId) {
         log.info("FollowRepository.countByUserId: {}", userId);
-        Thread.sleep(1000);
-        return userFollowCountMap.getOrDefault(userId, 0L);
+
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            return userFollowCountMap.getOrDefault(userId, 0L);
+        });
+
     }
 }
