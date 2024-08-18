@@ -1,9 +1,9 @@
-package completablefuture.blocking.common;
+package completablefuture.common;
 
 import lombok.Data;
 
 @Data
-public class Image {
+public class ImageEntity {
     private final String id;
     private final String name;
     private final String url;

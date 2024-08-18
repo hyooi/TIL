@@ -1,23 +1,23 @@
-package completablefuture.blocking;
+package completablefuture.future;
 
-import completablefuture.common.Article;
-import completablefuture.common.Image;
-import completablefuture.common.User;
-import completablefuture.blocking.repository.ArticleRepository;
-import completablefuture.blocking.repository.FollowRepository;
-import completablefuture.blocking.repository.ImageRepository;
-import completablefuture.blocking.repository.UserRepository;
+import completablefuture.future.common.Article;
+import completablefuture.future.common.Image;
+import completablefuture.future.common.User;
+import completablefuture.future.repository.ArticleFutureRepository;
+import completablefuture.future.repository.FollowFutureRepository;
+import completablefuture.future.repository.ImageFutureRepository;
+import completablefuture.future.repository.UserFutureRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class UserBlockingService {
-    private final UserRepository userRepository;
-    private final ArticleRepository articleRepository;
-    private final ImageRepository imageRepository;
-    private final FollowRepository followRepository;
+public class UserFutureService {
+    private final UserFutureRepository userRepository;
+    private final ArticleFutureRepository articleRepository;
+    private final ImageFutureRepository imageRepository;
+    private final FollowFutureRepository followRepository;
 
     public Optional<User> getUserById(String id) {
         return userRepository.findById(id)

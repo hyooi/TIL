@@ -1,6 +1,6 @@
 package completablefuture.blocking;
 
-import completablefuture.blocking.common.User;
+import completablefuture.common.User;
 import completablefuture.blocking.repository.ArticleRepository;
 import completablefuture.blocking.repository.FollowRepository;
 import completablefuture.blocking.repository.ImageRepository;

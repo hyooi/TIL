@@ -1,6 +1,6 @@
-package completablefuture.blocking.repository;
+package completablefuture.future.repository;
 
-import completablefuture.common.ImageEntity;
+import completablefuture.future.common.ImageEntity;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
-public class ImageRepository {
+public class ImageFutureRepository {
     private final Map<String, ImageEntity> imageMap;
 
-    public ImageRepository() {
+    public ImageFutureRepository() {
         imageMap = Map.of(
                 "image#1000", new ImageEntity("image#1000", "profileImage", "https://dailyone.com/images/1000")
         );

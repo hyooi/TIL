@@ -1,4 +1,4 @@
-package completablefuture.blocking.common;
+package completablefuture.common;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
-package completablefuture.blocking.repository;
+package completablefuture.future.repository;
 
-import completablefuture.common.UserEntity;
+import completablefuture.future.common.UserEntity;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
-public class UserRepository {
+public class UserFutureRepository {
     private final Map<String, UserEntity> userMap;
 
-    public UserRepository() {
+    public UserFutureRepository() {
         var user = new UserEntity("1234", "taewoo", 32, "image#1000");
 
         userMap = Map.of("1234", user);
