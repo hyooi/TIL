@@ -1,6 +1,6 @@
 package completablefuture.future.repository;
 
-import completablefuture.future.common.UserEntity;
+import completablefuture.common.UserEntity;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 

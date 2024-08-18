@@ -1,8 +1,8 @@
 package completablefuture.future;
 
-import completablefuture.future.common.Article;
-import completablefuture.future.common.Image;
-import completablefuture.future.common.User;
+import completablefuture.common.Article;
+import completablefuture.common.Image;
+import completablefuture.common.User;
 import completablefuture.future.repository.ArticleFutureRepository;
 import completablefuture.future.repository.FollowFutureRepository;
 import completablefuture.future.repository.ImageFutureRepository;
