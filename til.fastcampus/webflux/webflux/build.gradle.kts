@@ -14,6 +14,8 @@ dependencies {
     implementation("org.slf4j:slf4j-log4j12:2.0.7")
     implementation("org.apache.logging.log4j:log4j-core:2.17.1")
     implementation("org.apache.logging.log4j:log4j-api:2.17.1")
+    implementation("io.netty:netty-all:4.1.113.Final")
+
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 
