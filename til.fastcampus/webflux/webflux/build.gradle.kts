@@ -1,3 +1,5 @@
+import org.gradle.api.internal.tasks.compile.CompileJavaBuildOperationType
+
 plugins {
     id("java")
 }
@@ -10,12 +12,10 @@ repositories {
 }
 
 dependencies {
-    implementation("org.slf4j:slf4j-api:2.0.7")
-    implementation("org.slf4j:slf4j-log4j12:2.0.7")
-    implementation("org.apache.logging.log4j:log4j-core:2.17.1")
-    implementation("org.apache.logging.log4j:log4j-api:2.17.1")
     implementation("io.netty:netty-all:4.1.113.Final")
     implementation("org.springframework.boot:spring-boot-starter-webflux:3.3.3")
+    implementation("org.springframework.boot:spring-boot-starter-actuator:3.3.3")
+    implementation("org.springframework.boot:spring-boot-starter-mustache:3.3.3")
 
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
