@@ -15,6 +15,7 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-core:2.17.1")
     implementation("org.apache.logging.log4j:log4j-api:2.17.1")
     implementation("io.netty:netty-all:4.1.113.Final")
+    implementation("org.springframework.boot:spring-boot-starter-webflux:3.3.3")
 
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
