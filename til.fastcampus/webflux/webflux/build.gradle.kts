@@ -16,6 +16,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux:3.3.3")
     implementation("org.springframework.boot:spring-boot-starter-actuator:3.3.3")
     implementation("org.springframework.boot:spring-boot-starter-mustache:3.3.3")
+    implementation("org.springframework.security:spring-security-core:6.3.3")
+    implementation("io.projectreactor:reactor-tools:3.6.10")
 
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
