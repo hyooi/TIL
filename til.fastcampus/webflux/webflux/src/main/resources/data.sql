@@ -1,0 +1,1 @@
+INSERT INTO USERS (id, name, age, profile_image_id, password) VALUES (1234, 'hyoin', 32, '1', '1234');
