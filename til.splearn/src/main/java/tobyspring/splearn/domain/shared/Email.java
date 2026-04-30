@@ -4,4 +4,8 @@ public class Email {
     public Email(Email email) {
 
     }
+
+    public String address() {
+        return null;
+    }
 }
