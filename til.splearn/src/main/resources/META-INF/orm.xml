@@ -1,0 +1,72 @@
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm" version="3.0">
+    <entity class="tobyspring.splearn.domain.member.Member">
+        <table name="member">
+            <unique-constraint name="UK_MEMBER_EMAIL_ADDRESS">
+                <column-name>email_address</column-name>
+            </unique-constraint>
+            <unique-constraint name="UK_MEMBER_DETAIL_ID">
+                <column-name>detail_id</column-name>
+            </unique-constraint>
+        </table>
+        <attributes>
+            <basic name="nickname">
+                <column name="nickname" nullable="false" length="100"/>
+            </basic>
+            <basic name="passwordHash">
+                <column name="password_hash" nullable="false" length="200"/>
+            </basic>
+            <basic name="status">
+                <column name="status" nullable="false" length="50"/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <one-to-one name="detail" fetch="LAZY">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-one>
+            <embedded name="email" />
+        </attributes>
+    </entity>
+
+    <entity class="tobyspring.splearn.domain.member.MemberDetail">
+        <table name="member_detail">
+            <unique-constraint name="UK_MEMBER_DETAIL_PROFILE_ADDRESS">
+                <column-name>profile_Address</column-name>
+            </unique-constraint>
+        </table>
+        <attributes>
+            <embedded name="profile"/>
+            <basic name="introduction">
+                <column name="introfuction" column-definition="TEXT"/>
+            </basic>
+
+            <basic name="registerdAt">
+                <column name="registered_at" nullable="false"/>
+            </basic>
+
+            <basic name="activatedAt">
+                <column name="activated_at"/>
+            </basic>
+
+            <basic name="deactivatedAt">
+                <column name="deactivated_at"/>
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="tobyspring.splearn.domain.member.Profile">
+        <attributes>
+            <basic name="address">
+                <column name="profile_address" length="20"/>
+            </basic>
+        </attributes>
+    </entity>
+
+    <embeddable class="tobyspring.splearn.domain.shared.Email">
+        <attributes>
+            <basic name="address">
+                <column name="email_address" nullable="false" length="150"/>
+            </basic>
+        </attributes>
+    </embeddable>
+</entity-mappings>

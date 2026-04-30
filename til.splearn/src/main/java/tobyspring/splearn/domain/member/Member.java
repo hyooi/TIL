@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.NaturalId;
 import tobyspring.splearn.domain.AbstractEntity;
+import tobyspring.splearn.domain.shared.Email;
 
 import java.util.Objects;
 
@@ -26,8 +27,6 @@ public class Member extends AbstractEntity {
     private String nickname;
     private String passwordHash;
     private MemberStatus status;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private MemberDetail detail;
 
     public static Member register(MemberRegisterRequest createRequest, PasswordEncoder passwordEncoder) {
@@ -48,5 +47,8 @@ public class Member extends AbstractEntity {
 
     public void activate() {
 
+    }
+
+    public void deactivate() {
     }
 }
