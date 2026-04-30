@@ -1,4 +1,4 @@
-package tobyspring.splearn.domain.member;
+package tobyspring.splearn.domain;
 
-public class AbstractEntity {
+public abstract class AbstractEntity {
 }

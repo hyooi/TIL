@@ -1,4 +1,4 @@
 package tobyspring.splearn.domain.member;
 
-public class MemberRegisterRequest {
+public record MemberRegisterRequest(Email email, String nickname, String password, String passwordHash) {
 }
