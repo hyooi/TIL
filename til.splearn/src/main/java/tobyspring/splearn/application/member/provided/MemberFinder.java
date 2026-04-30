@@ -10,6 +10,6 @@ public class MemberFinder {
     private final MemberRepository repository;
 
     public Member find(Long memberId) {
-        return repository.findById(memberId);
+        return repository.findById(memberId).orElseThrow();
     }
 }
